@@ -23,7 +23,7 @@ function aiground_add_admin_menu() {
 	);
 }
 
-function aiground_get_providers(): array {
+function aiground_get_providers_with_models(): array {
 	if ( ! function_exists( 'wp_get_connectors' ) ) {
 		return [];
 	}
@@ -33,20 +33,42 @@ function aiground_get_providers(): array {
 		return [];
 	}
 
-	$providers = [];
-	foreach ( $connectors as $id => $data ) {
-		if ( ! is_array( $data ) || ! isset( $data['type'] ) || 'ai_provider' !== $data['type'] ) {
+	$data = [];
+
+	foreach ( $connectors as $id => $connector_data ) {
+		if ( ! is_array( $connector_data ) || ! isset( $connector_data['type'] ) || 'ai_provider' !== $connector_data['type'] ) {
 			continue;
 		}
-		$name              = ( isset( $data['name'] ) && '' !== $data['name'] ) ? $data['name'] : $id;
-		$providers[ $id ]  = $name;
+
+		$name   = ( isset( $connector_data['name'] ) && '' !== $connector_data['name'] ) ? $connector_data['name'] : $id;
+		$models = [];
+
+		if ( class_exists( '\WordPress\AiClient\AiClient' ) ) {
+			try {
+				$registry       = \WordPress\AiClient\AiClient::defaultRegistry();
+				$provider_class = $registry->getProviderClassName( $id );
+				foreach ( $provider_class::modelMetadataDirectory()->listModelMetadata() as $model ) {
+					$models[] = [
+						'id'   => $model->getId(),
+						'name' => $model->getName(),
+					];
+				}
+			} catch ( \Exception $e ) {
+				// Models unavailable for this provider.
+			}
+		}
+
+		$data[ $id ] = [
+			'name'   => $name,
+			'models' => $models,
+		];
 	}
 
-	return $providers;
+	return $data;
 }
 
 function aiground_tools_page() {
-	$providers = aiground_get_providers();
+	$providers = aiground_get_providers_with_models();
 	$nonce     = wp_create_nonce( 'aiground_prompt' );
 	?>
 	<div class="wrap">
@@ -78,10 +100,14 @@ function aiground_tools_page() {
 				<p>
 					<label for="aiground-provider"><?php esc_html_e( 'Provider', 'aiground' ); ?></label>
 					<select id="aiground-provider">
-						<?php foreach ( $providers as $id => $name ) : ?>
-							<option value="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $name ); ?></option>
+						<?php foreach ( $providers as $id => $data ) : ?>
+							<option value="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $data['name'] ); ?></option>
 						<?php endforeach; ?>
 					</select>
+				</p>
+				<p>
+					<label for="aiground-model"><?php esc_html_e( 'Model', 'aiground' ); ?></label>
+					<select id="aiground-model"></select>
 				</p>
 				<?php
 				$countries        = [ 'France', 'Japan', 'Brazil', 'Germany', 'Australia', 'Canada', 'India', 'Italy', 'Mexico', 'Spain', 'Argentina', 'Egypt', 'Nigeria', 'South Korea', 'Turkey', 'Indonesia', 'Saudi Arabia', 'Thailand', 'Poland', 'Netherlands' ];
@@ -117,17 +143,46 @@ function aiground_tools_page() {
 
 	<script>
 		(function () {
-			var btn      = document.getElementById('aiground-submit');
-			var select   = document.getElementById('aiground-provider');
+			var btn         = document.getElementById('aiground-submit');
+			var select      = document.getElementById('aiground-provider');
+			var modelSelect = document.getElementById('aiground-model');
 			if (!btn) return;
+
+			var providerModels  = <?php echo wp_json_encode( $providers ); ?>;
+			var modelStorageKey = 'aiground_model';
+
+			function populateModels(providerId) {
+				var info   = providerModels[providerId] || {};
+				var models = info.models || [];
+				modelSelect.innerHTML = '';
+				models.forEach(function (m) {
+					var opt   = document.createElement('option');
+					opt.value = m.id;
+					opt.text  = m.name !== m.id ? m.name + ' (' + m.id + ')' : m.id;
+					modelSelect.appendChild(opt);
+				});
+			}
 
 			var storageKey = 'aiground_provider';
 			var saved = localStorage.getItem(storageKey);
 			if (saved && select.querySelector('option[value="' + saved + '"]')) {
 				select.value = saved;
 			}
+			populateModels(select.value);
+
+			var savedModel = localStorage.getItem(modelStorageKey);
+			if (savedModel && modelSelect.querySelector('option[value="' + savedModel + '"]')) {
+				modelSelect.value = savedModel;
+			}
+
 			select.addEventListener('change', function () {
 				localStorage.setItem(storageKey, select.value);
+				localStorage.removeItem(modelStorageKey);
+				populateModels(select.value);
+			});
+
+			modelSelect.addEventListener('change', function () {
+				localStorage.setItem(modelStorageKey, modelSelect.value);
 			});
 
 			function buildMetaLines(meta) {
@@ -186,6 +241,7 @@ function aiground_tools_page() {
 				body.append('action',   'aiground_prompt');
 				body.append('nonce',    <?php echo wp_json_encode( $nonce ); ?>);
 				body.append('provider', provider);
+				body.append('model',    modelSelect.value);
 				body.append('prompt',   prompt);
 
 				fetch(<?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>, { method: 'POST', body: body })
@@ -245,6 +301,7 @@ function aiground_handle_prompt() {
 
 	$prompt   = isset( $_POST['prompt'] ) ? sanitize_textarea_field( wp_unslash( $_POST['prompt'] ) ) : '';
 	$provider = isset( $_POST['provider'] ) ? sanitize_text_field( wp_unslash( $_POST['provider'] ) ) : '';
+	$model_id = isset( $_POST['model'] ) ? sanitize_text_field( wp_unslash( $_POST['model'] ) ) : '';
 
 	if ( '' === $prompt ) {
 		wp_send_json_error( __( 'Prompt is required.', 'aiground' ) );
@@ -254,7 +311,17 @@ function aiground_handle_prompt() {
 	$builder = wp_ai_client_prompt( $prompt )
 		->using_system_instruction( $system );
 
-	if ( '' !== $provider ) {
+	if ( '' !== $model_id && '' !== $provider && class_exists( '\WordPress\AiClient\AiClient' ) ) {
+		try {
+			$registry = \WordPress\AiClient\AiClient::defaultRegistry();
+			$model    = $registry->getProviderModel( $provider, $model_id );
+			$builder  = $builder->using_model( $model );
+		} catch ( \Exception $e ) {
+			if ( '' !== $provider ) {
+				$builder = $builder->using_provider( $provider );
+			}
+		}
+	} elseif ( '' !== $provider ) {
 		$builder = $builder->using_provider( $provider );
 	}
 
