@@ -108,6 +108,10 @@ function aiground_tools_page() {
 				<div class="apd-label">User</div>
 				<div class="apd-value"></div>
 			</div>
+			<div class="apd-row" id="apd-raw">
+				<div class="apd-label">Raw Response</div>
+				<div class="apd-value"></div>
+			</div>
 		</div>
 	</div>
 
@@ -203,6 +207,7 @@ function aiground_tools_page() {
 							if (res.data.debug) {
 								document.querySelector('#apd-system .apd-value').textContent = res.data.debug.system || '';
 								document.querySelector('#apd-user .apd-value').textContent   = res.data.debug.prompt || '';
+								document.querySelector('#apd-raw .apd-value').textContent    = res.data.debug.raw ? JSON.stringify(res.data.debug.raw, null, 2) : '(empty)';
 								promptDebug.style.display = 'block';
 							}
 						} else {
@@ -274,6 +279,7 @@ function aiground_handle_prompt() {
 			'debug'  => [
 				'system' => $system,
 				'prompt' => $prompt,
+				'raw'    => json_decode( wp_json_encode( $result ), true ),
 			],
 		]
 	);
