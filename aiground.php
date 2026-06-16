@@ -54,7 +54,7 @@ function aiground_get_providers_with_models(): array {
 					];
 				}
 			} catch ( \Exception $e ) {
-				// Models unavailable for this provider.
+				continue;
 			}
 		}
 
