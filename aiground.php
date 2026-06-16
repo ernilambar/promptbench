@@ -63,6 +63,12 @@ function aiground_tools_page() {
 			#aiground-output.is-error { border-color: #d63638; background: #fcf0f1; color: #d63638; }
 			#aiground-meta { max-width: 600px; margin-top: 8px; font-size: 12px; color: #50575e; }
 			#aiground-meta.is-empty { display: none; }
+			#aiground-prompt-debug { max-width: 600px; margin-top: 12px; border: 1px solid #c3c4c7; border-radius: 4px; font-family: monospace; font-size: 12px; display: none; }
+			#aiground-prompt-debug .apd-header { padding: 6px 12px; font-size: 11px; font-weight: 600; color: #50575e; border-bottom: 1px solid #c3c4c7; }
+			#aiground-prompt-debug .apd-row { padding: 8px 12px; }
+			#aiground-prompt-debug .apd-row + .apd-row { border-top: 1px solid #dcdcde; }
+			#aiground-prompt-debug .apd-label { font-size: 10px; font-weight: 700; color: #8c8f94; text-transform: uppercase; margin-bottom: 4px; }
+			#aiground-prompt-debug .apd-value { color: #1d2327; white-space: pre-wrap; word-break: break-word; }
 		</style>
 
 		<div id="aiground-form">
@@ -92,6 +98,17 @@ function aiground_tools_page() {
 
 		<div id="aiground-output"></div>
 		<div id="aiground-meta" class="is-empty"></div>
+		<div id="aiground-prompt-debug">
+			<div class="apd-header">Final Prompt (Debug)</div>
+			<div class="apd-row" id="apd-system">
+				<div class="apd-label">System</div>
+				<div class="apd-value"></div>
+			</div>
+			<div class="apd-row" id="apd-user">
+				<div class="apd-label">User</div>
+				<div class="apd-value"></div>
+			</div>
+		</div>
 	</div>
 
 	<script>
@@ -146,9 +163,10 @@ function aiground_tools_page() {
 			btn.addEventListener('click', function () {
 				var provider = document.getElementById('aiground-provider').value;
 				var prompt   = document.getElementById('aiground-prompt').value.trim();
-				var output   = document.getElementById('aiground-output');
-				var metaEl   = document.getElementById('aiground-meta');
-				var spinner  = document.getElementById('aiground-spinner');
+				var output      = document.getElementById('aiground-output');
+				var metaEl      = document.getElementById('aiground-meta');
+				var promptDebug = document.getElementById('aiground-prompt-debug');
+				var spinner     = document.getElementById('aiground-spinner');
 
 				if (!prompt) return;
 
@@ -158,6 +176,7 @@ function aiground_tools_page() {
 				output.className        = '';
 				metaEl.className        = 'is-empty';
 				metaEl.innerHTML        = '';
+				promptDebug.style.display = 'none';
 
 				var body = new FormData();
 				body.append('action',   'aiground_prompt');
@@ -180,6 +199,11 @@ function aiground_tools_page() {
 									metaEl.appendChild(div);
 								});
 								metaEl.className = '';
+							}
+							if (res.data.debug) {
+								document.querySelector('#apd-system .apd-value').textContent = res.data.debug.system || '';
+								document.querySelector('#apd-user .apd-value').textContent   = res.data.debug.prompt || '';
+								promptDebug.style.display = 'block';
 							}
 						} else {
 							output.className   = 'is-error';
@@ -247,6 +271,10 @@ function aiground_handle_prompt() {
 		[
 			'output' => trim( $result->toText() ),
 			'meta'   => aiground_extract_meta( $result ),
+			'debug'  => [
+				'system' => $system,
+				'prompt' => $prompt,
+			],
 		]
 	);
 }
