@@ -61,6 +61,8 @@ function aiground_tools_page() {
 			#aiground-spinner { display: none; vertical-align: middle; float: none; }
 			#aiground-output { max-width: 600px; margin-top: 20px; padding: 12px 16px; background: #f0f0f1; border-left: 4px solid #2271b1; white-space: pre-wrap; display: none; }
 			#aiground-output.is-error { border-left-color: #d63638; background: #fcf0f1; }
+			#aiground-meta { max-width: 600px; margin-top: 8px; font-size: 12px; color: #50575e; }
+			#aiground-meta.is-empty { display: none; }
 		</style>
 
 		<div id="aiground-form">
@@ -85,6 +87,7 @@ function aiground_tools_page() {
 		</div>
 
 		<div id="aiground-output"></div>
+		<div id="aiground-meta" class="is-empty"></div>
 	</div>
 
 	<script>
@@ -92,10 +95,45 @@ function aiground_tools_page() {
 			var btn = document.getElementById('aiground-submit');
 			if (!btn) return;
 
+			function buildMetaLines(meta) {
+				if (!meta) return [];
+				var lines = [];
+
+				if (meta.provider) {
+					var p    = meta.provider;
+					var name = p.name || p.id || '';
+					var type = p.type || '';
+					lines.push('Provider: ' + (name && type ? name + ' · ' + type : name || p.id || ''));
+				}
+
+				if (meta.model) {
+					var m    = meta.model;
+					var mId  = m.id || '';
+					var mName = m.name || '';
+					if (mName && mId && mName !== mId) {
+						lines.push('Model: ' + mName + ' (' + mId + ')');
+					} else {
+						lines.push('Model: ' + (mName || mId));
+					}
+				}
+
+				if (meta.token_usage) {
+					var t = meta.token_usage, parts = [];
+					if (t.promptTokens     != null) parts.push('Prompt: '     + t.promptTokens);
+					if (t.completionTokens != null) parts.push('Completion: ' + t.completionTokens);
+					if (t.totalTokens      != null) parts.push('Total: '      + t.totalTokens);
+					if (t.thoughtTokens    != null) parts.push('Thought: '    + t.thoughtTokens);
+					if (parts.length) lines.push('Tokens — ' + parts.join(' · '));
+				}
+
+				return lines.filter(Boolean);
+			}
+
 			btn.addEventListener('click', function () {
 				var provider = document.getElementById('aiground-provider').value;
 				var prompt   = document.getElementById('aiground-prompt').value.trim();
 				var output   = document.getElementById('aiground-output');
+				var metaEl   = document.getElementById('aiground-meta');
 				var spinner  = document.getElementById('aiground-spinner');
 
 				if (!prompt) return;
@@ -104,6 +142,8 @@ function aiground_tools_page() {
 				spinner.style.display   = 'inline-block';
 				output.style.display    = 'none';
 				output.className        = '';
+				metaEl.className        = 'is-empty';
+				metaEl.innerHTML        = '';
 
 				var body = new FormData();
 				body.append('action',   'aiground_prompt');
@@ -116,11 +156,20 @@ function aiground_tools_page() {
 					.then(function (res) {
 						output.style.display = 'block';
 						if (res.success) {
-							output.className    = '';
-							output.textContent  = res.data;
+							output.className   = '';
+							output.textContent = res.data.output;
+							var lines = buildMetaLines(res.data.meta);
+							if (lines.length) {
+								lines.forEach(function (line) {
+									var div = document.createElement('div');
+									div.textContent = line;
+									metaEl.appendChild(div);
+								});
+								metaEl.className = '';
+							}
 						} else {
-							output.className    = 'is-error';
-							output.textContent  = res.data || <?php echo wp_json_encode( __( 'An error occurred.', 'aiground' ) ); ?>;
+							output.className   = 'is-error';
+							output.textContent = res.data || <?php echo wp_json_encode( __( 'An error occurred.', 'aiground' ) ); ?>;
 						}
 					})
 					.catch(function () {
@@ -158,7 +207,9 @@ function aiground_handle_prompt() {
 		wp_send_json_error( __( 'Prompt is required.', 'aiground' ) );
 	}
 
-	$builder = wp_ai_client_prompt( $prompt );
+	$system  = 'Be concise. No markdown, no code fences, no wrapping.';
+	$builder = wp_ai_client_prompt( $prompt )
+		->using_system_instruction( $system );
 
 	if ( '' !== $provider ) {
 		$builder = $builder->using_provider( $provider );
@@ -178,5 +229,67 @@ function aiground_handle_prompt() {
 		wp_send_json_error( __( 'Unexpected response from AI provider.', 'aiground' ) );
 	}
 
-	wp_send_json_success( trim( $result->toText() ) );
+	wp_send_json_success(
+		[
+			'output' => trim( $result->toText() ),
+			'meta'   => aiground_extract_meta( $result ),
+		]
+	);
+}
+
+function aiground_extract_meta( object $result ): array {
+	$meta = [];
+
+	if ( method_exists( $result, 'getProviderMetadata' ) ) {
+		$provider = $result->getProviderMetadata();
+		if ( $provider ) {
+			$data = [];
+			if ( method_exists( $provider, 'getId' ) ) {
+				$data['id'] = $provider->getId();
+			}
+			if ( method_exists( $provider, 'getName' ) ) {
+				$data['name'] = $provider->getName();
+			}
+			if ( method_exists( $provider, 'getType' ) ) {
+				$data['type'] = $provider->getType();
+			}
+			$meta['provider'] = $data;
+		}
+	}
+
+	if ( method_exists( $result, 'getModelMetadata' ) ) {
+		$model = $result->getModelMetadata();
+		if ( $model ) {
+			$data = [];
+			if ( method_exists( $model, 'getId' ) ) {
+				$data['id'] = $model->getId();
+			}
+			if ( method_exists( $model, 'getName' ) ) {
+				$data['name'] = $model->getName();
+			}
+			$meta['model'] = $data;
+		}
+	}
+
+	if ( method_exists( $result, 'getTokenUsage' ) ) {
+		$usage = $result->getTokenUsage();
+		if ( $usage ) {
+			$data = [];
+			if ( method_exists( $usage, 'getPromptTokens' ) ) {
+				$data['promptTokens'] = $usage->getPromptTokens();
+			}
+			if ( method_exists( $usage, 'getCompletionTokens' ) ) {
+				$data['completionTokens'] = $usage->getCompletionTokens();
+			}
+			if ( method_exists( $usage, 'getTotalTokens' ) ) {
+				$data['totalTokens'] = $usage->getTotalTokens();
+			}
+			if ( method_exists( $usage, 'getThoughtTokens' ) ) {
+				$data['thoughtTokens'] = $usage->getThoughtTokens();
+			}
+			$meta['token_usage'] = $data;
+		}
+	}
+
+	return $meta;
 }
