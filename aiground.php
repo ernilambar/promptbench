@@ -77,9 +77,13 @@ function aiground_tools_page() {
 						<?php endforeach; ?>
 					</select>
 				</p>
+				<?php
+				$countries        = [ 'France', 'Japan', 'Brazil', 'Germany', 'Australia', 'Canada', 'India', 'Italy', 'Mexico', 'Spain', 'Argentina', 'Egypt', 'Nigeria', 'South Korea', 'Turkey', 'Indonesia', 'Saudi Arabia', 'Thailand', 'Poland', 'Netherlands' ];
+				$random_country   = $countries[ array_rand( $countries ) ];
+				?>
 				<p>
 					<label for="aiground-prompt"><?php esc_html_e( 'Prompt', 'aiground' ); ?></label>
-					<textarea id="aiground-prompt"><?php echo esc_textarea( 'What is capital of Nepal?' ); ?></textarea>
+					<textarea id="aiground-prompt"><?php echo esc_textarea( "What is capital of {$random_country}?" ); ?></textarea>
 				</p>
 				<button id="aiground-submit" class="button button-primary"><?php esc_html_e( 'Submit', 'aiground' ); ?></button>
 				<span id="aiground-spinner" class="spinner"></span>
