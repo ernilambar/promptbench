@@ -59,8 +59,8 @@ function aiground_tools_page() {
 			#aiground-form select, #aiground-form textarea { width: 100%; box-sizing: border-box; }
 			#aiground-form textarea { height: 100px; margin-top: 4px; }
 			#aiground-spinner { display: none; vertical-align: middle; float: none; }
-			#aiground-output { max-width: 600px; margin-top: 20px; padding: 12px 16px; background: #f0f0f1; border-left: 4px solid #2271b1; white-space: pre-wrap; display: none; }
-			#aiground-output.is-error { border-left-color: #d63638; background: #fcf0f1; }
+			#aiground-output { max-width: 600px; margin-top: 20px; padding: 16px; background: #fff; border: 1px solid #c3c4c7; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,.08); white-space: pre-wrap; display: none; }
+			#aiground-output.is-error { border-color: #d63638; background: #fcf0f1; color: #d63638; }
 			#aiground-meta { max-width: 600px; margin-top: 8px; font-size: 12px; color: #50575e; }
 			#aiground-meta.is-empty { display: none; }
 		</style>
@@ -83,7 +83,7 @@ function aiground_tools_page() {
 				?>
 				<p>
 					<label for="aiground-prompt"><?php esc_html_e( 'Prompt', 'aiground' ); ?></label>
-					<textarea id="aiground-prompt"><?php echo esc_textarea( "What is capital of {$random_country}?" ); ?></textarea>
+					<textarea id="aiground-prompt"><?php echo esc_textarea( "What is capital of {$random_country}? Tell me its best attraction in one sentence." ); ?></textarea>
 				</p>
 				<button id="aiground-submit" class="button button-primary"><?php esc_html_e( 'Submit', 'aiground' ); ?></button>
 				<span id="aiground-spinner" class="spinner"></span>
@@ -96,8 +96,18 @@ function aiground_tools_page() {
 
 	<script>
 		(function () {
-			var btn = document.getElementById('aiground-submit');
+			var btn      = document.getElementById('aiground-submit');
+			var select   = document.getElementById('aiground-provider');
 			if (!btn) return;
+
+			var storageKey = 'aiground_provider';
+			var saved = localStorage.getItem(storageKey);
+			if (saved && select.querySelector('option[value="' + saved + '"]')) {
+				select.value = saved;
+			}
+			select.addEventListener('change', function () {
+				localStorage.setItem(storageKey, select.value);
+			});
 
 			function buildMetaLines(meta) {
 				if (!meta) return [];
