@@ -249,6 +249,7 @@ function aiground_tools_page() {
 
 				btn.disabled            = true;
 				spinner.style.display   = 'inline-block';
+				spinner.classList.add('is-active');
 				output.style.display    = 'none';
 				output.className        = '';
 				metaEl.className        = 'is-empty';
@@ -296,7 +297,8 @@ function aiground_tools_page() {
 					})
 					.finally(function () {
 						btn.disabled          = false;
-						spinner.style.display = 'none';
+						spinner.style.display = '';
+						spinner.classList.remove('is-active');
 					});
 			});
 		}());
