@@ -112,7 +112,7 @@ function aiground_tools_page() {
 					<select id="aiground-model"></select>
 				</p>
 				<?php
-				$countries      = [ 'France', 'Japan', 'Brazil', 'Germany', 'Australia', 'Canada', 'India', 'Italy', 'Mexico', 'Spain', 'Argentina', 'Egypt', 'Nigeria', 'South Korea', 'Turkey', 'Indonesia', 'Saudi Arabia', 'Thailand', 'Poland', 'Netherlands' ];
+				$countries      = [ 'Japan', 'India', 'Indonesia', 'South Korea', 'Thailand', 'Vietnam', 'Philippines', 'Malaysia', 'Bangladesh', 'Pakistan', 'Sri Lanka', 'Nepal', 'Myanmar', 'Cambodia', 'China', 'Brazil', 'Nigeria', 'Germany', 'Mexico', 'Australia' ];
 				$random_country = $countries[ array_rand( $countries ) ];
 				$prompt_default = "State the capital of {$random_country} in one sentence. In a second complete sentence, name 5 other major cities (excluding the capital) separated by commas. Do not include any other text.";
 				$prompt_alt     = 'Return a JSON object with the capital of ' . $random_country . ' and a list of its other 5 major cities (excluding the capital) using this exact schema: {"capital": "", "cities": []}';
