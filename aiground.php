@@ -173,6 +173,10 @@ function aiground_tools_page() {
 				var info   = providerModels[providerId] || {};
 				var models = info.models || [];
 				modelSelect.innerHTML = '';
+				var placeholder = document.createElement('option');
+				placeholder.value = '';
+				placeholder.text  = '- Select -';
+				modelSelect.appendChild(placeholder);
 				models.forEach(function (m) {
 					var opt   = document.createElement('option');
 					opt.value = m.id;
