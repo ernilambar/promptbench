@@ -91,6 +91,8 @@ function aiground_tools_page() {
 			#aiground-prompt-debug .apd-row + .apd-row { border-top: 1px solid #dcdcde; }
 			#aiground-prompt-debug .apd-label { font-size: 10px; font-weight: 700; color: #8c8f94; text-transform: uppercase; margin-bottom: 4px; }
 			#aiground-prompt-debug .apd-value { color: #1d2327; white-space: pre-wrap; word-break: break-word; }
+			#aiground-prompt-label { display: flex; align-items: center; gap: 6px; font-weight: 600; margin-bottom: 4px; }
+			#aiground-prompt-toggle { background: none; border: none; padding: 0; cursor: pointer; color: inherit; }
 		</style>
 
 		<div id="aiground-form">
@@ -110,12 +112,17 @@ function aiground_tools_page() {
 					<select id="aiground-model"></select>
 				</p>
 				<?php
-				$countries        = [ 'France', 'Japan', 'Brazil', 'Germany', 'Australia', 'Canada', 'India', 'Italy', 'Mexico', 'Spain', 'Argentina', 'Egypt', 'Nigeria', 'South Korea', 'Turkey', 'Indonesia', 'Saudi Arabia', 'Thailand', 'Poland', 'Netherlands' ];
-				$random_country   = $countries[ array_rand( $countries ) ];
+				$countries      = [ 'France', 'Japan', 'Brazil', 'Germany', 'Australia', 'Canada', 'India', 'Italy', 'Mexico', 'Spain', 'Argentina', 'Egypt', 'Nigeria', 'South Korea', 'Turkey', 'Indonesia', 'Saudi Arabia', 'Thailand', 'Poland', 'Netherlands' ];
+				$random_country = $countries[ array_rand( $countries ) ];
+				$prompt_default = "What is the capital of {$random_country}? Reply in one sentence, then list other 5 major cities in a second sentence.";
+				$prompt_alt     = 'Return a JSON object with the capital of ' . $random_country . ' and a list of its other 5 major cities using this exact schema: {"capital": "", "cities": []}';
 				?>
 				<p>
-					<label for="aiground-prompt"><?php esc_html_e( 'Prompt', 'aiground' ); ?></label>
-					<textarea id="aiground-prompt"><?php echo esc_textarea( "What is capital of {$random_country}? Tell me its best attraction in one sentence." ); ?></textarea>
+					<span id="aiground-prompt-label">
+						<label for="aiground-prompt"><?php esc_html_e( 'Prompt', 'aiground' ); ?></label>
+						<button type="button" id="aiground-prompt-toggle" title="<?php esc_attr_e( 'Switch prompt', 'aiground' ); ?>"><span class="dashicons dashicons-controls-repeat"></span></button>
+					</span>
+					<textarea id="aiground-prompt"><?php echo esc_textarea( $prompt_default ); ?></textarea>
 				</p>
 				<button id="aiground-submit" class="button button-primary"><?php esc_html_e( 'Submit', 'aiground' ); ?></button>
 				<span id="aiground-spinner" class="spinner"></span>
@@ -150,6 +157,17 @@ function aiground_tools_page() {
 
 			var providerModels  = <?php echo wp_json_encode( $providers ); ?>;
 			var modelStorageKey = 'aiground_model';
+
+			var promptVariants  = <?php echo wp_json_encode( [ $prompt_default, $prompt_alt ] ); ?>;
+			var promptIdx       = 0;
+			var toggleBtn       = document.getElementById('aiground-prompt-toggle');
+			var promptTextarea  = document.getElementById('aiground-prompt');
+			if (toggleBtn) {
+				toggleBtn.addEventListener('click', function () {
+					promptIdx = 1 - promptIdx;
+					promptTextarea.value = promptVariants[promptIdx];
+				});
+			}
 
 			function populateModels(providerId) {
 				var info   = providerModels[providerId] || {};
