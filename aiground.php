@@ -64,6 +64,36 @@ function aiground_get_providers_with_models(): array {
 		];
 	}
 
+	// Registry fallback: pick up providers that registered directly without a Connectors entry.
+	if ( class_exists( '\WordPress\AiClient\AiClient' ) ) {
+		try {
+			$registry = \WordPress\AiClient\AiClient::defaultRegistry();
+			foreach ( $registry->getRegisteredProviderIds() as $id ) {
+				if ( isset( $data[ $id ] ) || ! $registry->isProviderConfigured( $id ) ) {
+					continue;
+				}
+				try {
+					$provider_class = $registry->getProviderClassName( $id );
+					$models         = [];
+					foreach ( $provider_class::modelMetadataDirectory()->listModelMetadata() as $model ) {
+						$models[] = [
+							'id'   => $model->getId(),
+							'name' => $model->getName(),
+						];
+					}
+					$data[ $id ] = [
+						'name'   => $provider_class::metadata()->getName(),
+						'models' => $models,
+					];
+				} catch ( \Exception $e ) {
+					continue;
+				}
+			}
+		} catch ( \Exception $e ) {
+			// Registry unavailable.
+		}
+	}
+
 	return $data;
 }
 
