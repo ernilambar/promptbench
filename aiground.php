@@ -144,7 +144,7 @@ function aiground_tools_page() {
 				<?php
 				$countries      = [ 'Japan', 'India', 'Indonesia', 'South Korea', 'Thailand', 'China', 'Philippines', 'Malaysia', 'Bangladesh', 'Pakistan', 'Sri Lanka', 'Nepal', 'Myanmar', 'Cambodia', 'China', 'Brazil', 'Vietnam', 'Germany', 'Switzerland', 'Spain' ];
 				$random_country = $countries[ array_rand( $countries ) ];
-				$prompt_default = "State the capital of {$random_country} in one sentence. In a second complete sentence, name exactly 5 major cities (excluding the capital) separated by commas. Do not include any other text.";
+				$prompt_default = "Write two complete sentences, each with a subject and a verb. The first sentence states the capital of {$random_country}. The second sentence lists exactly 5 major cities (excluding the capital) separated by commas. Output only these two sentences.";
 				$prompt_alt     = 'Return a JSON object with the capital of ' . $random_country . ' and a list of its other 5 major cities (excluding the capital) using this exact schema: {"capital": "", "cities": []}';
 				?>
 				<p>
