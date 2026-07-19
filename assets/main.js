@@ -8,14 +8,19 @@
 	var modelStorageKey = 'aiground_model';
 
 	var testCases            = aigroundData.testCases;
-	var testCaseSelect       = document.getElementById('aiground-testcase');
+	var testCasePills        = document.getElementById('aiground-testcase');
 	var systemPromptTextarea = document.getElementById('aiground-system-prompt');
 	var promptTextarea       = document.getElementById('aiground-prompt');
 	var expectedEl           = document.getElementById('aiground-expected');
-	if (testCaseSelect) {
-		testCaseSelect.addEventListener('change', function () {
-			var testCase = testCases[testCaseSelect.value];
+	if (testCasePills) {
+		testCasePills.addEventListener('click', function (e) {
+			var pill = e.target.closest('.aiground-pill');
+			if (!pill) return;
+			var testCase = testCases[pill.dataset.testcase];
 			if (!testCase) return;
+			testCasePills.querySelectorAll('.aiground-pill').forEach(function (p) {
+				p.classList.toggle('is-active', p === pill);
+			});
 			systemPromptTextarea.value = testCase.system;
 			promptTextarea.value       = testCase.user;
 			expectedEl.textContent     = testCase.expected;

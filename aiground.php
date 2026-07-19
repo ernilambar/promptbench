@@ -286,12 +286,12 @@ function aiground_tools_page() {
 					</span>
 				</p>
 				<p>
-					<label for="aiground-testcase"><?php esc_html_e( 'Test Case', 'aiground' ); ?></label>
-					<select id="aiground-testcase">
+					<label><?php esc_html_e( 'Test Case', 'aiground' ); ?></label>
+					<div id="aiground-testcase" class="aiground-pills">
 						<?php foreach ( $test_cases as $id => $test_case ) : ?>
-							<option value="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $test_case['label'] ); ?></option>
+							<button type="button" class="aiground-pill<?php echo $id === $default_id ? ' is-active' : ''; ?>" data-testcase="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $test_case['label'] ); ?></button>
 						<?php endforeach; ?>
-					</select>
+					</div>
 				</p>
 				<p class="aiground-row">
 					<span class="aiground-field">
