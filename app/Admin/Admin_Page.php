@@ -29,6 +29,29 @@ class Admin_Page {
 	public function init(): void {
 		add_action( 'admin_menu', [ $this, 'add_admin_menu' ] );
 		add_action( 'wp_ajax_promptbench_prompt', [ $this, 'handle_prompt' ] );
+		add_filter( 'plugin_action_links_' . plugin_basename( PROMPTBENCH_FILE ), [ $this, 'add_action_links' ] );
+	}
+
+	/**
+	 * Adds plugin action links.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $links Existing plugin action links.
+	 * @return array Modified plugin action links.
+	 */
+	public function add_action_links( array $links ): array {
+		$url = add_query_arg( 'page', 'promptbench-tools', admin_url( 'tools.php' ) );
+
+		$link = sprintf(
+			'<a href="%1$s">%2$s</a>',
+			esc_url( $url ),
+			esc_html_x( 'Promptbench', 'page title', 'promptbench' )
+		);
+
+		array_unshift( $links, $link );
+
+		return $links;
 	}
 
 	/**
@@ -38,8 +61,8 @@ class Admin_Page {
 	 */
 	public function add_admin_menu(): void {
 		$hook_suffix = add_management_page(
-			__( 'Promptbench', 'promptbench' ),
-			__( 'Promptbench', 'promptbench' ),
+			_x( 'Promptbench', 'page title', 'promptbench' ),
+			_x( 'Promptbench', 'menu title', 'promptbench' ),
 			'manage_options',
 			'promptbench-tools',
 			[ $this, 'render_page' ]
