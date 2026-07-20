@@ -1,0 +1,14 @@
+{
+    "require-dev": {
+        "ernilambar/coding-standard": "^2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nilambar\\AIGround\\": "app/"
+        }
+    },
+    "scripts": {
+        "lint": "@php ./vendor/bin/phpcs --report-full --report-summary",
+        "format": "@php ./vendor/bin/phpcbf --report-full --report-summary"
+    }
+}

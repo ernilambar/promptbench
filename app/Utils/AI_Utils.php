@@ -1,0 +1,219 @@
+<?php
+/**
+ * AI_Utils class.
+ *
+ * @package Nilambar\AIGround
+ */
+
+namespace Nilambar\AIGround\Utils;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * AI helper utilities.
+ *
+ * @since 1.0.0
+ */
+class AI_Utils {
+
+	/**
+	 * Gets test cases loaded from the "cases" directory.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return array Test cases keyed by case ID.
+	 */
+	public static function get_test_cases(): array {
+		$cases = [];
+
+		foreach ( glob( AIGROUND_DIR . 'cases/*.php' ) as $file ) {
+			$id           = preg_replace( '/^\d+-/', '', basename( $file, '.php' ) );
+			$cases[ $id ] = require $file;
+		}
+
+		return $cases;
+	}
+
+	/**
+	 * Gets AI providers with their available models.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return array Providers keyed by provider ID.
+	 */
+	public static function get_providers_with_models(): array {
+		if ( ! function_exists( 'wp_get_connectors' ) ) {
+			return [];
+		}
+
+		$connectors = wp_get_connectors();
+		if ( ! is_array( $connectors ) ) {
+			return [];
+		}
+
+		$data = [];
+
+		foreach ( $connectors as $id => $connector_data ) {
+			if ( ! is_array( $connector_data ) || ! isset( $connector_data['type'] ) || 'ai_provider' !== $connector_data['type'] ) {
+				continue;
+			}
+
+			$name   = ( isset( $connector_data['name'] ) && '' !== $connector_data['name'] ) ? $connector_data['name'] : $id;
+			$models = [];
+
+			if ( class_exists( '\WordPress\AiClient\AiClient' ) ) {
+				try {
+					$registry       = \WordPress\AiClient\AiClient::defaultRegistry();
+					$provider_class = $registry->getProviderClassName( $id );
+					foreach ( $provider_class::modelMetadataDirectory()->listModelMetadata() as $model ) {
+						$models[] = [
+							'id'   => $model->getId(),
+							'name' => $model->getName(),
+						];
+					}
+				} catch ( \Exception $e ) {
+					continue;
+				}
+			}
+
+			$data[ $id ] = [
+				'name'   => $name,
+				'models' => $models,
+			];
+		}
+
+		// Registry fallback: pick up providers that registered directly without a Connectors entry.
+		if ( class_exists( '\WordPress\AiClient\AiClient' ) ) {
+			try {
+				$registry = \WordPress\AiClient\AiClient::defaultRegistry();
+				foreach ( $registry->getRegisteredProviderIds() as $id ) {
+					if ( isset( $data[ $id ] ) || ! $registry->isProviderConfigured( $id ) ) {
+						continue;
+					}
+					try {
+						$provider_class = $registry->getProviderClassName( $id );
+						$models         = [];
+						foreach ( $provider_class::modelMetadataDirectory()->listModelMetadata() as $model ) {
+							$models[] = [
+								'id'   => $model->getId(),
+								'name' => $model->getName(),
+							];
+						}
+						$data[ $id ] = [
+							'name'   => $provider_class::metadata()->getName(),
+							'models' => $models,
+						];
+					} catch ( \Exception $e ) {
+						continue;
+					}
+				}
+			} catch ( \Exception $e ) {
+				// Registry unavailable.
+			}
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Builds an AI prompt builder for the given inputs.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $prompt   User prompt.
+	 * @param string $system   System instruction.
+	 * @param string $provider Provider ID.
+	 * @param string $model_id Model ID.
+	 * @return object Prompt builder.
+	 */
+	public static function build_prompt( string $prompt, string $system, string $provider, string $model_id ) {
+		$builder = wp_ai_client_prompt( $prompt );
+
+		if ( '' !== $system ) {
+			$builder = $builder->using_system_instruction( $system );
+		}
+
+		if ( '' !== $model_id && '' !== $provider && class_exists( '\WordPress\AiClient\AiClient' ) ) {
+			try {
+				$registry = \WordPress\AiClient\AiClient::defaultRegistry();
+				$model    = $registry->getProviderModel( $provider, $model_id );
+				$builder  = $builder->using_model( $model );
+			} catch ( \Exception $e ) {
+				if ( '' !== $provider ) {
+					$builder = $builder->using_provider( $provider );
+				}
+			}
+		} elseif ( '' !== $provider ) {
+			$builder = $builder->using_provider( $provider );
+		}
+
+		return $builder;
+	}
+
+	/**
+	 * Extracts metadata from an AI result.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param object $result AI result object.
+	 * @return array Extracted metadata.
+	 */
+	public static function extract_meta( object $result ): array {
+		$meta = [];
+
+		if ( method_exists( $result, 'getProviderMetadata' ) ) {
+			$provider = $result->getProviderMetadata();
+			if ( $provider ) {
+				$data = [];
+				if ( method_exists( $provider, 'getId' ) ) {
+					$data['id'] = $provider->getId();
+				}
+				if ( method_exists( $provider, 'getName' ) ) {
+					$data['name'] = $provider->getName();
+				}
+				if ( method_exists( $provider, 'getType' ) ) {
+					$data['type'] = $provider->getType();
+				}
+				$meta['provider'] = $data;
+			}
+		}
+
+		if ( method_exists( $result, 'getModelMetadata' ) ) {
+			$model = $result->getModelMetadata();
+			if ( $model ) {
+				$data = [];
+				if ( method_exists( $model, 'getId' ) ) {
+					$data['id'] = $model->getId();
+				}
+				if ( method_exists( $model, 'getName' ) ) {
+					$data['name'] = $model->getName();
+				}
+				$meta['model'] = $data;
+			}
+		}
+
+		if ( method_exists( $result, 'getTokenUsage' ) ) {
+			$usage = $result->getTokenUsage();
+			if ( $usage ) {
+				$data = [];
+				if ( method_exists( $usage, 'getPromptTokens' ) ) {
+					$data['promptTokens'] = $usage->getPromptTokens();
+				}
+				if ( method_exists( $usage, 'getCompletionTokens' ) ) {
+					$data['completionTokens'] = $usage->getCompletionTokens();
+				}
+				if ( method_exists( $usage, 'getTotalTokens' ) ) {
+					$data['totalTokens'] = $usage->getTotalTokens();
+				}
+				if ( method_exists( $usage, 'getThoughtTokens' ) ) {
+					$data['thoughtTokens'] = $usage->getThoughtTokens();
+				}
+				$meta['token_usage'] = $data;
+			}
+		}
+
+		return $meta;
+	}
+}
