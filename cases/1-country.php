@@ -2,7 +2,7 @@
 /**
  * Test case: Country.
  *
- * @package Nilambar\AIGround
+ * @package Nilambar\Promptbench
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
-	'label'       => __( 'Country', 'aiground' ),
+	'label'       => __( 'Country', 'promptbench' ),
 	'system'      => 'Be concise. No markdown, no code fences, no wrapping.',
 	'user'        => 'Write two complete sentences, each with a subject and a verb. The first sentence states the capital of Nepal. The second sentence lists exactly 3 major cities in Nepal whose names start with the letter "B", separated by commas. Output only these two sentences.',
 	'expected'    => 'Format: plain text, exactly 2 sentences, no markdown.'

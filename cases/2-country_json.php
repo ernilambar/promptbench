@@ -2,7 +2,7 @@
 /**
  * Test case: Country (JSON).
  *
- * @package Nilambar\AIGround
+ * @package Nilambar\Promptbench
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
-	'label'       => __( 'Country (JSON)', 'aiground' ),
+	'label'       => __( 'Country (JSON)', 'promptbench' ),
 	'system'      => 'Respond only with valid JSON. No markdown, no code fences, no commentary.',
 	'user'        => 'Return a JSON object with the capital of Nepal and a list of exactly 3 major cities in Nepal whose names start with the letter "B" using this exact schema: {"capital": "", "cities": []}',
 	'expected'    => 'Format: raw JSON object, no fences, schema {"capital": "", "cities": []}.'

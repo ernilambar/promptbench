@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="AIGround">
-	<description>PHPCS ruleset for AIGround.</description>
+<ruleset name="Promptbench">
+	<description>PHPCS ruleset for Promptbench.</description>
 
 	<!-- What to scan -->
 	<file>.</file>
@@ -47,7 +47,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="aiground" />
+				<element value="promptbench" />
 			</property>
 		</properties>
 	</rule>
@@ -57,7 +57,7 @@
 			<property name="old_text_domain" type="array">
 				<element value="" />
 			</property>
-			<property name="new_text_domain" value="aiground" />
+			<property name="new_text_domain" value="promptbench" />
 		</properties>
 	</rule>
 

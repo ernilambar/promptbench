@@ -2,7 +2,7 @@
 /**
  * Test case: PHP Query Wrapper (Fenced Code).
  *
- * @package Nilambar\AIGround
+ * @package Nilambar\Promptbench
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
-	'label'       => __( 'PHP Query Wrapper (Fenced Code)', 'aiground' ),
+	'label'       => __( 'PHP Query Wrapper (Fenced Code)', 'promptbench' ),
 	'system'      => 'Constraints:'
 		. "\n" . '1. The function name must be `fetch_active_user_records`.'
 		. "\n" . '2. Inside the function body, you must include a raw SQL string query.'
