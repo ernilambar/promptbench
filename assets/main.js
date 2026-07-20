@@ -12,6 +12,10 @@
 	var systemPromptTextarea = document.getElementById('promptbench-system-prompt');
 	var promptTextarea       = document.getElementById('promptbench-prompt');
 	var expectedEl           = document.getElementById('promptbench-expected');
+
+	var activePill      = testCasePills ? testCasePills.querySelector('.promptbench-pill.is-active') : null;
+	var currentTestCase = activePill ? testCases[activePill.dataset.testcase] : null;
+
 	if (testCasePills) {
 		testCasePills.addEventListener('click', function (e) {
 			var pill = e.target.closest('.promptbench-pill');
@@ -24,7 +28,34 @@
 			systemPromptTextarea.value = testCase.system;
 			promptTextarea.value       = testCase.user;
 			expectedEl.textContent     = testCase.expected;
+			currentTestCase            = testCase;
 		});
+	}
+
+	function deepEqual(a, b) {
+		if (a === b) return true;
+		if (Array.isArray(a) || Array.isArray(b)) {
+			if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) return false;
+			return a.every(function (v, i) { return deepEqual(v, b[i]); });
+		}
+		if (a && b && typeof a === 'object' && typeof b === 'object') {
+			var aKeys = Object.keys(a), bKeys = Object.keys(b);
+			if (aKeys.length !== bKeys.length) return false;
+			return aKeys.every(function (k) {
+				return Object.prototype.hasOwnProperty.call(b, k) && deepEqual(a[k], b[k]);
+			});
+		}
+		return false;
+	}
+
+	function valuesMatch(output, expected) {
+		var o = (output || '').trim();
+		var e = (expected || '').trim();
+		try {
+			return deepEqual(JSON.parse(o), JSON.parse(e));
+		} catch (err) {
+			return o === e;
+		}
 	}
 
 	function populateModels(providerId) {
@@ -134,6 +165,9 @@
 				if (res.success) {
 					output.className   = '';
 					output.textContent = res.data.output;
+					if (currentTestCase && currentTestCase.exact_match) {
+						output.classList.add(valuesMatch(res.data.output, currentTestCase.expected_value) ? 'is-match' : 'is-mismatch');
+					}
 					var lines = buildMetaLines(res.data.meta);
 					if (lines.length) {
 						lines.forEach(function (line) {
