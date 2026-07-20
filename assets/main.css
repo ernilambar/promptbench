@@ -1,23 +1,23 @@
-#aiground-form { max-width: 800px; margin-top: 20px; }
-#aiground-form p { margin-bottom: 12px; }
-#aiground-form label { display: block; font-weight: 600; margin-bottom: 4px; }
-#aiground-form select, #aiground-form textarea { width: 100%; box-sizing: border-box; }
-#aiground-form .aiground-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-#aiground-form .aiground-pill { padding: 4px 10px; font-size: 12px; line-height: 1.6; background: #f6f7f7; border: 1px solid #dcdcde; border-radius: 12px; cursor: pointer; }
-#aiground-form .aiground-pill:hover { background: #f0f0f1; }
-#aiground-form .aiground-pill.is-active { background: #2271b1; border-color: #2271b1; color: #fff; }
-#aiground-form textarea { height: 160px; margin-top: 4px; }
-#aiground-expected { margin-top: 4px; padding: 10px 12px; background: #f6f7f7; border: 1px solid #dcdcde; border-radius: 4px; font-size: 12px; color: #1d2327; white-space: pre-wrap; }
-#aiground-form .aiground-row { display: flex; gap: 12px; }
-#aiground-form .aiground-field { flex: 1; }
-#aiground-spinner { display: none; vertical-align: middle; float: none; }
-#aiground-output { max-width: 800px; margin-top: 20px; padding: 16px; background: #fff; border: 1px solid #c3c4c7; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,.08); white-space: pre-wrap; display: none; }
-#aiground-output.is-error { border-color: #d63638; background: #fcf0f1; color: #d63638; }
-#aiground-meta { max-width: 800px; margin-top: 8px; font-size: 12px; color: #50575e; }
-#aiground-meta.is-empty { display: none; }
-#aiground-prompt-debug { max-width: 800px; margin-top: 12px; border: 1px solid #c3c4c7; border-radius: 4px; font-family: monospace; font-size: 12px; display: none; }
-#aiground-prompt-debug .apd-header { padding: 6px 12px; font-size: 11px; font-weight: 600; color: #50575e; border-bottom: 1px solid #c3c4c7; }
-#aiground-prompt-debug .apd-row { padding: 8px 12px; }
-#aiground-prompt-debug .apd-row + .apd-row { border-top: 1px solid #dcdcde; }
-#aiground-prompt-debug .apd-label { font-size: 10px; font-weight: 700; color: #8c8f94; text-transform: uppercase; margin-bottom: 4px; }
-#aiground-prompt-debug .apd-value { color: #1d2327; white-space: pre-wrap; word-break: break-word; }
+#promptbench-form { max-width: 800px; margin-top: 20px; }
+#promptbench-form p { margin-bottom: 12px; }
+#promptbench-form label { display: block; font-weight: 600; margin-bottom: 4px; }
+#promptbench-form select, #promptbench-form textarea { width: 100%; box-sizing: border-box; }
+#promptbench-form .promptbench-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+#promptbench-form .promptbench-pill { padding: 4px 10px; font-size: 12px; line-height: 1.6; background: #f6f7f7; border: 1px solid #dcdcde; border-radius: 12px; cursor: pointer; }
+#promptbench-form .promptbench-pill:hover { background: #f0f0f1; }
+#promptbench-form .promptbench-pill.is-active { background: #2271b1; border-color: #2271b1; color: #fff; }
+#promptbench-form textarea { height: 160px; margin-top: 4px; }
+#promptbench-expected { margin-top: 4px; padding: 10px 12px; background: #f6f7f7; border: 1px solid #dcdcde; border-radius: 4px; font-size: 12px; color: #1d2327; white-space: pre-wrap; }
+#promptbench-form .promptbench-row { display: flex; gap: 12px; }
+#promptbench-form .promptbench-field { flex: 1; }
+#promptbench-spinner { display: none; vertical-align: middle; float: none; }
+#promptbench-output { max-width: 800px; margin-top: 20px; padding: 16px; background: #fff; border: 1px solid #c3c4c7; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,.08); white-space: pre-wrap; display: none; }
+#promptbench-output.is-error { border-color: #d63638; background: #fcf0f1; color: #d63638; }
+#promptbench-meta { max-width: 800px; margin-top: 8px; font-size: 12px; color: #50575e; }
+#promptbench-meta.is-empty { display: none; }
+#promptbench-prompt-debug { max-width: 800px; margin-top: 12px; border: 1px solid #c3c4c7; border-radius: 4px; font-family: monospace; font-size: 12px; display: none; }
+#promptbench-prompt-debug .apd-header { padding: 6px 12px; font-size: 11px; font-weight: 600; color: #50575e; border-bottom: 1px solid #c3c4c7; }
+#promptbench-prompt-debug .apd-row { padding: 8px 12px; }
+#promptbench-prompt-debug .apd-row + .apd-row { border-top: 1px solid #dcdcde; }
+#promptbench-prompt-debug .apd-label { font-size: 10px; font-weight: 700; color: #8c8f94; text-transform: uppercase; margin-bottom: 4px; }
+#promptbench-prompt-debug .apd-value { color: #1d2327; white-space: pre-wrap; word-break: break-word; }

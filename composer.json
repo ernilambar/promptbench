@@ -15,7 +15,7 @@
   "prefer-stable": true,
   "autoload": {
     "psr-4": {
-      "Nilambar\\AIGround\\": "app/"
+      "Nilambar\\Promptbench\\": "app/"
     }
   },
   "config": {
@@ -38,7 +38,7 @@
     "lint-php": "@php ./vendor/bin/parallel-lint -p php --colors --exclude .git --exclude vendor .",
     "mo": "./vendor/bin/wp i18n make-mo languages/",
     "phpcs": "@php ./vendor/bin/phpcs --report-full --report-summary",
-    "po": "./vendor/bin/wp i18n update-po languages/aiground.pot languages/",
+    "po": "./vendor/bin/wp i18n update-po languages/promptbench.pot languages/",
     "pot": "./vendor/bin/wp i18n make-pot . --exclude=build,deploy,node_modules,vendor --headers='{\"POT-Creation-Date\":\"\"}'"
   }
 }

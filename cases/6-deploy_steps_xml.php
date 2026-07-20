@@ -2,7 +2,7 @@
 /**
  * Test case: Deploy Steps (XML).
  *
- * @package Nilambar\AIGround
+ * @package Nilambar\Promptbench
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
-	'label'       => __( 'Deploy Steps (XML)', 'aiground' ),
+	'label'       => __( 'Deploy Steps (XML)', 'promptbench' ),
 	'system'      => 'Constraints:'
 		. "\n" . '1. You must provide exactly 4 steps.'
 		. "\n" . '2. Each step must be wrapped in a separate custom XML tag named `<Step>` with a property `id` equal to the step number (e.g., <Step id="1">...</Step>).'

@@ -2,10 +2,10 @@
 /**
  * Case_Utils class.
  *
- * @package Nilambar\AIGround
+ * @package Nilambar\Promptbench
  */
 
-namespace Nilambar\AIGround\Utils;
+namespace Nilambar\Promptbench\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -28,7 +28,7 @@ class Case_Utils {
 	public static function get_test_cases(): array {
 		$cases = [];
 
-		foreach ( glob( AIGROUND_DIR . 'cases/*.php' ) as $file ) {
+		foreach ( glob( PROMPTBENCH_DIR . 'cases/*.php' ) as $file ) {
 			$id           = preg_replace( '/^\d+-/', '', basename( $file, '.php' ) );
 			$cases[ $id ] = require $file;
 		}

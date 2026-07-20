@@ -2,8 +2,8 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: AIGround 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aiground\n"
+"Project-Id-Version: Promptbench 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/promptbench\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12,27 +12,27 @@ msgstr ""
 "POT-Creation-Date: \n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
-"X-Domain: aiground\n"
+"X-Domain: promptbench\n"
 
 #. Plugin Name of the plugin
-#: aiground.php:3
+#: promptbench.php:3
 #: app/Admin/Admin_Page.php:41
 #: app/Admin/Admin_Page.php:42
-msgid "AIGround"
+msgid "Promptbench"
 msgstr ""
 
 #. Description of the plugin
-#: aiground.php:4
-msgid "AIGround plugin."
+#: promptbench.php:4
+msgid "Promptbench plugin."
 msgstr ""
 
 #. Author of the plugin
-#: aiground.php:8
+#: promptbench.php:8
 msgid "Nilambar Sharma"
 msgstr ""
 
 #. Author URI of the plugin
-#: aiground.php:9
+#: promptbench.php:9
 msgid "https://nilambar.net/"
 msgstr ""
 

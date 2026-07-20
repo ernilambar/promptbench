@@ -2,7 +2,7 @@
 /**
  * Test case: Performance Score.
  *
- * @package Nilambar\AIGround
+ * @package Nilambar\Promptbench
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
-	'label'       => __( 'Performance Score', 'aiground' ),
+	'label'       => __( 'Performance Score', 'promptbench' ),
 	'system'      => 'Rules:'
 		. "\n" . '1. Scan the text below for "Execution Time" (in ms) and "Memory Limit" (in MB).'
 		. "\n" . '2. Calculate the performance score: (Memory Limit divided by 2) minus Execution Time.'

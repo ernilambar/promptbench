@@ -2,10 +2,10 @@
 /**
  * AI_Utils class.
  *
- * @package Nilambar\AIGround
+ * @package Nilambar\Promptbench
  */
 
-namespace Nilambar\AIGround\Utils;
+namespace Nilambar\Promptbench\Utils;
 
 use Exception;
 use WordPress\AiClient\AiClient;

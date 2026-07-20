@@ -2,7 +2,7 @@
 /**
  * Test case: Ambiguous Item (JSON).
  *
- * @package Nilambar\AIGround
+ * @package Nilambar\Promptbench
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
-	'label'       => __( 'Ambiguous Item (JSON)', 'aiground' ),
+	'label'       => __( 'Ambiguous Item (JSON)', 'promptbench' ),
 	'system'      => 'You are an order processing assistant. You must parse ambiguous items. If the item name is ambiguous (e.g., matches multiple products), you must output a JSON error block with "error": "ambiguous_item" and a list of possible matches. Respond only with valid JSON. No markdown, no code fences, no commentary.',
 	'user'        => 'Product Catalog:'
 		. "\n" . '- Leather Jacket (Black)'

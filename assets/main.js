@@ -1,24 +1,24 @@
 (function () {
-	var btn         = document.getElementById('aiground-submit');
-	var select      = document.getElementById('aiground-provider');
-	var modelSelect = document.getElementById('aiground-model');
+	var btn         = document.getElementById('promptbench-submit');
+	var select      = document.getElementById('promptbench-provider');
+	var modelSelect = document.getElementById('promptbench-model');
 	if (!btn) return;
 
-	var providerModels  = aigroundData.providerModels;
-	var modelStorageKey = 'aiground_model';
+	var providerModels  = promptbenchData.providerModels;
+	var modelStorageKey = 'promptbench_model';
 
-	var testCases            = aigroundData.testCases;
-	var testCasePills        = document.getElementById('aiground-testcase');
-	var systemPromptTextarea = document.getElementById('aiground-system-prompt');
-	var promptTextarea       = document.getElementById('aiground-prompt');
-	var expectedEl           = document.getElementById('aiground-expected');
+	var testCases            = promptbenchData.testCases;
+	var testCasePills        = document.getElementById('promptbench-testcase');
+	var systemPromptTextarea = document.getElementById('promptbench-system-prompt');
+	var promptTextarea       = document.getElementById('promptbench-prompt');
+	var expectedEl           = document.getElementById('promptbench-expected');
 	if (testCasePills) {
 		testCasePills.addEventListener('click', function (e) {
-			var pill = e.target.closest('.aiground-pill');
+			var pill = e.target.closest('.promptbench-pill');
 			if (!pill) return;
 			var testCase = testCases[pill.dataset.testcase];
 			if (!testCase) return;
-			testCasePills.querySelectorAll('.aiground-pill').forEach(function (p) {
+			testCasePills.querySelectorAll('.promptbench-pill').forEach(function (p) {
 				p.classList.toggle('is-active', p === pill);
 			});
 			systemPromptTextarea.value = testCase.system;
@@ -43,7 +43,7 @@
 		});
 	}
 
-	var storageKey = 'aiground_provider';
+	var storageKey = 'promptbench_provider';
 	var saved = localStorage.getItem(storageKey);
 	if (saved && select.querySelector('option[value="' + saved + '"]')) {
 		select.value = saved;
@@ -100,13 +100,13 @@
 	}
 
 	btn.addEventListener('click', function () {
-		var provider = document.getElementById('aiground-provider').value;
-		var system   = document.getElementById('aiground-system-prompt').value.trim();
-		var prompt   = document.getElementById('aiground-prompt').value.trim();
-		var output      = document.getElementById('aiground-output');
-		var metaEl      = document.getElementById('aiground-meta');
-		var promptDebug = document.getElementById('aiground-prompt-debug');
-		var spinner     = document.getElementById('aiground-spinner');
+		var provider = document.getElementById('promptbench-provider').value;
+		var system   = document.getElementById('promptbench-system-prompt').value.trim();
+		var prompt   = document.getElementById('promptbench-prompt').value.trim();
+		var output      = document.getElementById('promptbench-output');
+		var metaEl      = document.getElementById('promptbench-meta');
+		var promptDebug = document.getElementById('promptbench-prompt-debug');
+		var spinner     = document.getElementById('promptbench-spinner');
 
 		if (!prompt) return;
 
@@ -120,14 +120,14 @@
 		promptDebug.style.display = 'none';
 
 		var body = new FormData();
-		body.append('action',   'aiground_prompt');
-		body.append('nonce',    aigroundData.nonce);
+		body.append('action',   'promptbench_prompt');
+		body.append('nonce',    promptbenchData.nonce);
 		body.append('provider', provider);
 		body.append('model',    modelSelect.value);
 		body.append('system',   system);
 		body.append('prompt',   prompt);
 
-		fetch(aigroundData.ajaxUrl, { method: 'POST', body: body })
+		fetch(promptbenchData.ajaxUrl, { method: 'POST', body: body })
 			.then(function (r) { return r.json(); })
 			.then(function (res) {
 				output.style.display = 'block';
@@ -151,13 +151,13 @@
 					}
 				} else {
 					output.className   = 'is-error';
-					output.textContent = res.data || aigroundData.errorGeneric;
+					output.textContent = res.data || promptbenchData.errorGeneric;
 				}
 			})
 			.catch(function () {
 				output.style.display = 'block';
 				output.className     = 'is-error';
-				output.textContent   = aigroundData.requestFailed;
+				output.textContent   = promptbenchData.requestFailed;
 			})
 			.finally(function () {
 				btn.disabled          = false;

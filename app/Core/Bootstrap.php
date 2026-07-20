@@ -2,12 +2,12 @@
 /**
  * Bootstrap class.
  *
- * @package Nilambar\AIGround
+ * @package Nilambar\Promptbench
  */
 
-namespace Nilambar\AIGround\Core;
+namespace Nilambar\Promptbench\Core;
 
-use Nilambar\AIGround\Admin\Admin_Page;
+use Nilambar\Promptbench\Admin\Admin_Page;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

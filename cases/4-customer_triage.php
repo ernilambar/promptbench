@@ -2,7 +2,7 @@
 /**
  * Test case: Customer Triage.
  *
- * @package Nilambar\AIGround
+ * @package Nilambar\Promptbench
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
-	'label'       => __( 'Customer Triage', 'aiground' ),
+	'label'       => __( 'Customer Triage', 'promptbench' ),
 	'system'      => 'Rules:'
 		. "\n" . '1. Read the following customer request.'
 		. "\n" . '2. If the customer is asking for a refund, output "REFUND_REQUEST".'

@@ -2,13 +2,13 @@
 /**
  * Admin_Page class.
  *
- * @package Nilambar\AIGround
+ * @package Nilambar\Promptbench
  */
 
-namespace Nilambar\AIGround\Admin;
+namespace Nilambar\Promptbench\Admin;
 
-use Nilambar\AIGround\Utils\AI_Utils;
-use Nilambar\AIGround\Utils\Case_Utils;
+use Nilambar\Promptbench\Utils\AI_Utils;
+use Nilambar\Promptbench\Utils\Case_Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -28,7 +28,7 @@ class Admin_Page {
 	 */
 	public function init(): void {
 		add_action( 'admin_menu', [ $this, 'add_admin_menu' ] );
-		add_action( 'wp_ajax_aiground_prompt', [ $this, 'handle_prompt' ] );
+		add_action( 'wp_ajax_promptbench_prompt', [ $this, 'handle_prompt' ] );
 	}
 
 	/**
@@ -38,10 +38,10 @@ class Admin_Page {
 	 */
 	public function add_admin_menu(): void {
 		$hook_suffix = add_management_page(
-			__( 'AIGround', 'aiground' ),
-			__( 'AIGround', 'aiground' ),
+			__( 'Promptbench', 'promptbench' ),
+			__( 'Promptbench', 'promptbench' ),
 			'manage_options',
-			'aiground-tools',
+			'promptbench-tools',
 			[ $this, 'render_page' ]
 		);
 
@@ -56,19 +56,19 @@ class Admin_Page {
 	public function enqueue_assets(): void {
 		$data = $this->get_page_data();
 
-		wp_enqueue_style( 'aiground', plugins_url( 'assets/main.css', AIGROUND_FILE ), [], '1.0.0' );
-		wp_enqueue_script( 'aiground', plugins_url( 'assets/main.js', AIGROUND_FILE ), [], '1.0.0', true );
+		wp_enqueue_style( 'promptbench', plugins_url( 'assets/main.css', PROMPTBENCH_FILE ), [], '1.0.0' );
+		wp_enqueue_script( 'promptbench', plugins_url( 'assets/main.js', PROMPTBENCH_FILE ), [], '1.0.0', true );
 
 		wp_localize_script(
-			'aiground',
-			'aigroundData',
+			'promptbench',
+			'promptbenchData',
 			[
 				'providerModels' => $data['providers'],
 				'testCases'      => $data['test_cases'],
 				'nonce'          => $data['nonce'],
 				'ajaxUrl'        => admin_url( 'admin-ajax.php' ),
-				'errorGeneric'   => __( 'An error occurred.', 'aiground' ),
-				'requestFailed'  => __( 'Request failed.', 'aiground' ),
+				'errorGeneric'   => __( 'An error occurred.', 'promptbench' ),
+				'requestFailed'  => __( 'Request failed.', 'promptbench' ),
 			]
 		);
 	}
@@ -89,7 +89,7 @@ class Admin_Page {
 
 		$data = [
 			'providers'  => AI_Utils::get_providers_with_models(),
-			'nonce'      => wp_create_nonce( 'aiground_prompt' ),
+			'nonce'      => wp_create_nonce( 'promptbench_prompt' ),
 			'test_cases' => Case_Utils::get_test_cases(),
 		];
 
@@ -111,54 +111,54 @@ class Admin_Page {
 		<div class="wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
-			<div id="aiground-form">
+			<div id="promptbench-form">
 				<?php if ( empty( $providers ) ) : ?>
-					<p><?php esc_html_e( 'No AI providers configured. Please configure a provider under Settings > Connectors.', 'aiground' ); ?></p>
+					<p><?php esc_html_e( 'No AI providers configured. Please configure a provider under Settings > Connectors.', 'promptbench' ); ?></p>
 				<?php else : ?>
-					<p class="aiground-row">
-						<span class="aiground-field">
-							<label for="aiground-provider"><?php esc_html_e( 'Provider', 'aiground' ); ?></label>
-							<select id="aiground-provider">
+					<p class="promptbench-row">
+						<span class="promptbench-field">
+							<label for="promptbench-provider"><?php esc_html_e( 'Provider', 'promptbench' ); ?></label>
+							<select id="promptbench-provider">
 								<?php foreach ( $providers as $id => $data ) : ?>
 									<option value="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $data['name'] ); ?></option>
 								<?php endforeach; ?>
 							</select>
 						</span>
-						<span class="aiground-field">
-							<label for="aiground-model"><?php esc_html_e( 'Model', 'aiground' ); ?></label>
-							<select id="aiground-model"></select>
+						<span class="promptbench-field">
+							<label for="promptbench-model"><?php esc_html_e( 'Model', 'promptbench' ); ?></label>
+							<select id="promptbench-model"></select>
 						</span>
 					</p>
 					<p>
-						<label><?php esc_html_e( 'Test Case', 'aiground' ); ?></label>
-						<div id="aiground-testcase" class="aiground-pills">
+						<label><?php esc_html_e( 'Test Case', 'promptbench' ); ?></label>
+						<div id="promptbench-testcase" class="promptbench-pills">
 							<?php foreach ( $test_cases as $id => $test_case ) : ?>
-								<button type="button" class="aiground-pill<?php echo $id === $default_id ? ' is-active' : ''; ?>" data-testcase="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $test_case['label'] ); ?></button>
+								<button type="button" class="promptbench-pill<?php echo $id === $default_id ? ' is-active' : ''; ?>" data-testcase="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $test_case['label'] ); ?></button>
 							<?php endforeach; ?>
 						</div>
 					</p>
-					<p class="aiground-row">
-						<span class="aiground-field">
-							<label for="aiground-system-prompt"><?php esc_html_e( 'System Prompt', 'aiground' ); ?></label>
-							<textarea id="aiground-system-prompt"><?php echo esc_textarea( $default['system'] ); ?></textarea>
+					<p class="promptbench-row">
+						<span class="promptbench-field">
+							<label for="promptbench-system-prompt"><?php esc_html_e( 'System Prompt', 'promptbench' ); ?></label>
+							<textarea id="promptbench-system-prompt"><?php echo esc_textarea( $default['system'] ); ?></textarea>
 						</span>
-						<span class="aiground-field">
-							<label for="aiground-prompt"><?php esc_html_e( 'User Prompt', 'aiground' ); ?></label>
-							<textarea id="aiground-prompt"><?php echo esc_textarea( $default['user'] ); ?></textarea>
+						<span class="promptbench-field">
+							<label for="promptbench-prompt"><?php esc_html_e( 'User Prompt', 'promptbench' ); ?></label>
+							<textarea id="promptbench-prompt"><?php echo esc_textarea( $default['user'] ); ?></textarea>
 						</span>
 					</p>
 					<p>
-						<label><?php esc_html_e( 'Expected Output', 'aiground' ); ?></label>
-						<div id="aiground-expected"><?php echo esc_html( $default['expected'] ); ?></div>
+						<label><?php esc_html_e( 'Expected Output', 'promptbench' ); ?></label>
+						<div id="promptbench-expected"><?php echo esc_html( $default['expected'] ); ?></div>
 					</p>
-					<button id="aiground-submit" class="button button-primary"><?php esc_html_e( 'Submit', 'aiground' ); ?></button>
-					<span id="aiground-spinner" class="spinner"></span>
+					<button id="promptbench-submit" class="button button-primary"><?php esc_html_e( 'Submit', 'promptbench' ); ?></button>
+					<span id="promptbench-spinner" class="spinner"></span>
 				<?php endif; ?>
 			</div>
 
-			<div id="aiground-output"></div>
-			<div id="aiground-meta" class="is-empty"></div>
-			<div id="aiground-prompt-debug">
+			<div id="promptbench-output"></div>
+			<div id="promptbench-meta" class="is-empty"></div>
+			<div id="promptbench-prompt-debug">
 				<div class="apd-header">Final Prompt (Debug)</div>
 				<div class="apd-row" id="apd-system">
 					<div class="apd-label">System</div>
@@ -183,14 +183,14 @@ class Admin_Page {
 	 * @since 1.0.0
 	 */
 	public function handle_prompt(): void {
-		check_ajax_referer( 'aiground_prompt', 'nonce' );
+		check_ajax_referer( 'promptbench_prompt', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( __( 'Unauthorized.', 'aiground' ) );
+			wp_send_json_error( __( 'Unauthorized.', 'promptbench' ) );
 		}
 
 		if ( ! function_exists( 'wp_ai_client_prompt' ) ) {
-			wp_send_json_error( __( 'WordPress AI client not available.', 'aiground' ) );
+			wp_send_json_error( __( 'WordPress AI client not available.', 'promptbench' ) );
 		}
 
 		$prompt   = isset( $_POST['prompt'] ) ? sanitize_textarea_field( wp_unslash( $_POST['prompt'] ) ) : '';
@@ -199,13 +199,13 @@ class Admin_Page {
 		$model_id = isset( $_POST['model'] ) ? sanitize_text_field( wp_unslash( $_POST['model'] ) ) : '';
 
 		if ( '' === $prompt ) {
-			wp_send_json_error( __( 'Prompt is required.', 'aiground' ) );
+			wp_send_json_error( __( 'Prompt is required.', 'promptbench' ) );
 		}
 
 		$builder = AI_Utils::build_prompt( $prompt, $system, $provider, $model_id );
 
 		if ( ! $builder->is_supported_for_text_generation() ) {
-			wp_send_json_error( __( 'No AI provider is configured.', 'aiground' ) );
+			wp_send_json_error( __( 'No AI provider is configured.', 'promptbench' ) );
 		}
 
 		$result = $builder->generate_text_result();
@@ -215,7 +215,7 @@ class Admin_Page {
 		}
 
 		if ( ! is_object( $result ) || ! method_exists( $result, 'toText' ) ) {
-			wp_send_json_error( __( 'Unexpected response from AI provider.', 'aiground' ) );
+			wp_send_json_error( __( 'Unexpected response from AI provider.', 'promptbench' ) );
 		}
 
 		wp_send_json_success(
