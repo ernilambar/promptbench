@@ -56,8 +56,8 @@ class Admin_Page {
 	public function enqueue_assets(): void {
 		$data = $this->get_page_data();
 
-		wp_enqueue_style( 'promptbench', plugins_url( 'assets/main.css', PROMPTBENCH_FILE ), [], '1.0.0' );
-		wp_enqueue_script( 'promptbench', plugins_url( 'assets/main.js', PROMPTBENCH_FILE ), [], '1.0.0', true );
+		wp_enqueue_style( 'promptbench', plugins_url( 'build/main.css', PROMPTBENCH_FILE ), [], '1.0.0' );
+		wp_enqueue_script( 'promptbench', plugins_url( 'build/main.js', PROMPTBENCH_FILE ), [], '1.0.0', true );
 
 		wp_localize_script(
 			'promptbench',

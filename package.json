@@ -1,0 +1,33 @@
+{
+	"name": "promptbench",
+	"version": "1.0.0",
+	"description": "Promptbench plugin.",
+	"keywords": [
+		"wordpress",
+		"wordpress-plugin"
+	],
+	"homepage": "https://github.com/ernilambar/promptbench",
+	"bugs": {
+		"url": "https://github.com/ernilambar/promptbench/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ernilambar/promptbench.git"
+	},
+	"license": "GPL-2.0-or-later",
+	"author": "Nilambar Sharma",
+	"main": "promptbench.php",
+	"scripts": {
+		"build": "vite build",
+		"format": "prettier \"**/*.{cjs,css,js,jsx,json,mjs}\" --write --log-level warn"
+	},
+	"browserslist": "> 2%, last 2 versions, not dead",
+	"devDependencies": {
+		"@wordpress/prettier-config": "^4.51.0",
+		"postcss": "^8.5.20",
+		"postcss-nested": "^7.0.2",
+		"postcss-preset-env": "^11.3.2",
+		"prettier": "npm:wp-prettier@^3.0.3",
+		"vite": "^8.1.5"
+	}
+}
