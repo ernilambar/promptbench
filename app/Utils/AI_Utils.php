@@ -115,6 +115,7 @@ class AI_Utils {
 	 */
 	public static function build_prompt( string $prompt, string $system, string $provider, string $model_id ) {
 		$builder = wp_ai_client_prompt( $prompt );
+		$builder = $builder->using_temperature( 0.2 );
 
 		if ( '' !== $system ) {
 			$builder = $builder->using_system_instruction( $system );
