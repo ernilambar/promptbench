@@ -1,0 +1,133 @@
+# Copyright (C) 2026 Nilambar Sharma
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: AIGround 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aiground\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.13.0-alpha\n"
+"X-Domain: aiground\n"
+
+#. Plugin Name of the plugin
+#: aiground.php:3
+#: app/Admin/Admin_Page.php:41
+#: app/Admin/Admin_Page.php:42
+msgid "AIGround"
+msgstr ""
+
+#. Description of the plugin
+#: aiground.php:4
+msgid "AIGround plugin."
+msgstr ""
+
+#. Author of the plugin
+#: aiground.php:8
+msgid "Nilambar Sharma"
+msgstr ""
+
+#. Author URI of the plugin
+#: aiground.php:9
+msgid "https://nilambar.net/"
+msgstr ""
+
+#: app/Admin/Admin_Page.php:70
+msgid "An error occurred."
+msgstr ""
+
+#: app/Admin/Admin_Page.php:71
+msgid "Request failed."
+msgstr ""
+
+#: app/Admin/Admin_Page.php:116
+msgid "No AI providers configured. Please configure a provider under Settings > Connectors."
+msgstr ""
+
+#: app/Admin/Admin_Page.php:120
+msgid "Provider"
+msgstr ""
+
+#: app/Admin/Admin_Page.php:128
+msgid "Model"
+msgstr ""
+
+#: app/Admin/Admin_Page.php:133
+msgid "Test Case"
+msgstr ""
+
+#: app/Admin/Admin_Page.php:142
+msgid "System Prompt"
+msgstr ""
+
+#: app/Admin/Admin_Page.php:146
+msgid "User Prompt"
+msgstr ""
+
+#: app/Admin/Admin_Page.php:151
+msgid "Expected Output"
+msgstr ""
+
+#: app/Admin/Admin_Page.php:154
+msgid "Submit"
+msgstr ""
+
+#: app/Admin/Admin_Page.php:189
+msgid "Unauthorized."
+msgstr ""
+
+#: app/Admin/Admin_Page.php:193
+msgid "WordPress AI client not available."
+msgstr ""
+
+#: app/Admin/Admin_Page.php:202
+msgid "Prompt is required."
+msgstr ""
+
+#: app/Admin/Admin_Page.php:208
+msgid "No AI provider is configured."
+msgstr ""
+
+#: app/Admin/Admin_Page.php:218
+msgid "Unexpected response from AI provider."
+msgstr ""
+
+#: cases/1-country.php:13
+msgid "Country"
+msgstr ""
+
+#: cases/2-country_json.php:13
+msgid "Country (JSON)"
+msgstr ""
+
+#: cases/3-tracking_extraction.php:13
+msgid "Tracking Extraction (JSON)"
+msgstr ""
+
+#: cases/4-customer_triage.php:13
+msgid "Customer Triage"
+msgstr ""
+
+#: cases/5-ambiguous_item.php:13
+msgid "Ambiguous Item (JSON)"
+msgstr ""
+
+#: cases/6-deploy_steps_xml.php:13
+msgid "Deploy Steps (XML)"
+msgstr ""
+
+#: cases/7-performance_score.php:13
+msgid "Performance Score"
+msgstr ""
+
+#: cases/8-prompt_injection.php:13
+msgid "Prompt Injection Resistance"
+msgstr ""
+
+#: cases/9-php_query_wrapper.php:13
+msgid "PHP Query Wrapper (Fenced Code)"
+msgstr ""

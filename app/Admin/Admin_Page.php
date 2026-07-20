@@ -8,6 +8,7 @@
 namespace Nilambar\AIGround\Admin;
 
 use Nilambar\AIGround\Utils\AI_Utils;
+use Nilambar\AIGround\Utils\Case_Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -89,7 +90,7 @@ class Admin_Page {
 		$data = [
 			'providers'  => AI_Utils::get_providers_with_models(),
 			'nonce'      => wp_create_nonce( 'aiground_prompt' ),
-			'test_cases' => AI_Utils::get_test_cases(),
+			'test_cases' => Case_Utils::get_test_cases(),
 		];
 
 		return $data;

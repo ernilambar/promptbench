@@ -7,6 +7,9 @@
 
 namespace Nilambar\AIGround\Utils;
 
+use Exception;
+use WordPress\AiClient\AiClient;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -17,24 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  */
 class AI_Utils {
-
-	/**
-	 * Gets test cases loaded from the "cases" directory.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return array Test cases keyed by case ID.
-	 */
-	public static function get_test_cases(): array {
-		$cases = [];
-
-		foreach ( glob( AIGROUND_DIR . 'cases/*.php' ) as $file ) {
-			$id           = preg_replace( '/^\d+-/', '', basename( $file, '.php' ) );
-			$cases[ $id ] = require $file;
-		}
-
-		return $cases;
-	}
 
 	/**
 	 * Gets AI providers with their available models.
@@ -65,7 +50,7 @@ class AI_Utils {
 
 			if ( class_exists( '\WordPress\AiClient\AiClient' ) ) {
 				try {
-					$registry       = \WordPress\AiClient\AiClient::defaultRegistry();
+					$registry       = AiClient::defaultRegistry();
 					$provider_class = $registry->getProviderClassName( $id );
 					foreach ( $provider_class::modelMetadataDirectory()->listModelMetadata() as $model ) {
 						$models[] = [
@@ -73,7 +58,7 @@ class AI_Utils {
 							'name' => $model->getName(),
 						];
 					}
-				} catch ( \Exception $e ) {
+				} catch ( Exception $e ) {
 					continue;
 				}
 			}
@@ -87,7 +72,7 @@ class AI_Utils {
 		// Registry fallback: pick up providers that registered directly without a Connectors entry.
 		if ( class_exists( '\WordPress\AiClient\AiClient' ) ) {
 			try {
-				$registry = \WordPress\AiClient\AiClient::defaultRegistry();
+				$registry = AiClient::defaultRegistry();
 				foreach ( $registry->getRegisteredProviderIds() as $id ) {
 					if ( isset( $data[ $id ] ) || ! $registry->isProviderConfigured( $id ) ) {
 						continue;
@@ -105,12 +90,12 @@ class AI_Utils {
 							'name'   => $provider_class::metadata()->getName(),
 							'models' => $models,
 						];
-					} catch ( \Exception $e ) {
+					} catch ( Exception $e ) {
 						continue;
 					}
 				}
-			} catch ( \Exception $e ) {
-				// Registry unavailable.
+			} catch ( Exception $e ) {
+				unset( $e );
 			}
 		}
 
@@ -137,10 +122,10 @@ class AI_Utils {
 
 		if ( '' !== $model_id && '' !== $provider && class_exists( '\WordPress\AiClient\AiClient' ) ) {
 			try {
-				$registry = \WordPress\AiClient\AiClient::defaultRegistry();
+				$registry = AiClient::defaultRegistry();
 				$model    = $registry->getProviderModel( $provider, $model_id );
 				$builder  = $builder->using_model( $model );
-			} catch ( \Exception $e ) {
+			} catch ( Exception $e ) {
 				if ( '' !== $provider ) {
 					$builder = $builder->using_provider( $provider );
 				}
