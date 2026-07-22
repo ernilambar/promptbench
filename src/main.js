@@ -14,6 +14,9 @@ import './main.css';
 	var systemPromptTextarea = document.getElementById( 'promptbench-system-prompt' );
 	var promptTextarea = document.getElementById( 'promptbench-prompt' );
 	var expectedEl = document.getElementById( 'promptbench-expected' );
+	var outputEl = document.getElementById( 'promptbench-output' );
+	var metaEl = document.getElementById( 'promptbench-meta' );
+	var promptDebugEl = document.getElementById( 'promptbench-prompt-debug' );
 
 	var activePill = testCasePills
 		? testCasePills.querySelector( '.promptbench-pill.is-active' )
@@ -33,6 +36,12 @@ import './main.css';
 			promptTextarea.value = testCase.user;
 			expectedEl.textContent = testCase.expected;
 			currentTestCase = testCase;
+
+			outputEl.style.display = 'none';
+			outputEl.className = '';
+			metaEl.className = 'is-empty';
+			metaEl.innerHTML = '';
+			promptDebugEl.style.display = 'none';
 		} );
 	}
 
