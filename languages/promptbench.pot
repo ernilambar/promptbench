@@ -93,50 +93,74 @@ msgstr ""
 msgid "WordPress AI client not available."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:225
+#: app/Admin/Admin_Page.php:226
 msgid "Prompt is required."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:231
+#: app/Admin/Admin_Page.php:232
 msgid "No AI provider is configured."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:241
+#: app/Admin/Admin_Page.php:242
 msgid "Unexpected response from AI provider."
 msgstr ""
 
-#: cases/1-country.php:13
-msgid "Country"
+#: cases/01-country_facts.php:13
+msgid "Country Facts"
 msgstr ""
 
-#: cases/2-country_json.php:13
-msgid "Country (JSON)"
+#: cases/02-country_facts_json.php:13
+msgid "Country Facts (JSON)"
 msgstr ""
 
-#: cases/3-tracking_extraction.php:13
+#: cases/03-tracking_extraction.php:13
 msgid "Tracking Extraction (JSON)"
 msgstr ""
 
-#: cases/4-customer_triage.php:13
+#: cases/04-customer_triage.php:13
 msgid "Customer Triage"
 msgstr ""
 
-#: cases/5-ambiguous_item.php:13
+#: cases/05-ambiguous_item.php:13
 msgid "Ambiguous Item (JSON)"
 msgstr ""
 
-#: cases/6-deploy_steps_xml.php:13
+#: cases/06-deploy_steps_xml.php:13
 msgid "Deploy Steps (XML)"
 msgstr ""
 
-#: cases/7-performance_score.php:13
+#: cases/07-performance_score.php:13
 msgid "Performance Score"
 msgstr ""
 
-#: cases/8-prompt_injection.php:13
+#: cases/08-prompt_injection.php:13
 msgid "Prompt Injection Resistance"
 msgstr ""
 
-#: cases/9-php_query_wrapper.php:13
+#: cases/09-php_query_wrapper.php:13
 msgid "PHP Query Wrapper (Fenced Code)"
+msgstr ""
+
+#: cases/10-letter_counting.php:13
+msgid "Letter Counting"
+msgstr ""
+
+#: cases/11-grounded_refusal.php:13
+msgid "Grounded Refusal"
+msgstr ""
+
+#: cases/12-exact_word_count.php:13
+msgid "Exact Word Count"
+msgstr ""
+
+#: cases/13-negative_constraint.php:13
+msgid "Negative Constraint"
+msgstr ""
+
+#: cases/14-neutral_sentiment.php:13
+msgid "Neutral Sentiment"
+msgstr ""
+
+#: cases/15-markdown_table.php:13
+msgid "Markdown Table"
 msgstr ""

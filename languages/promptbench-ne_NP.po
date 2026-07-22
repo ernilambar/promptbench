@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-07-20T12:29:08+00:00\n"
+"PO-Revision-Date: 2026-07-22T08:36:56+00:00\n"
 "Language: ne_NP\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: promptbench\n"
@@ -92,50 +92,74 @@ msgstr "अनधिकृत।"
 msgid "WordPress AI client not available."
 msgstr "वर्डप्रेस एआई क्लाइन्ट उपलब्ध छैन।"
 
-#: app/Admin/Admin_Page.php:225
+#: app/Admin/Admin_Page.php:226
 msgid "Prompt is required."
 msgstr "प्रम्प्ट आवश्यक छ।"
 
-#: app/Admin/Admin_Page.php:231
+#: app/Admin/Admin_Page.php:232
 msgid "No AI provider is configured."
 msgstr "कुनै एआई प्रोभाइडर कन्फिगर गरिएको छैन।"
 
-#: app/Admin/Admin_Page.php:241
+#: app/Admin/Admin_Page.php:242
 msgid "Unexpected response from AI provider."
 msgstr "एआई प्रोभाइडरबाट अनपेक्षित प्रतिक्रिया आयो।"
 
-#: cases/1-country.php:13
-msgid "Country"
-msgstr "देश"
+#: cases/01-country_facts.php:13
+msgid "Country Facts"
+msgstr "देशका तथ्यहरू"
 
-#: cases/2-country_json.php:13
-msgid "Country (JSON)"
-msgstr "देश (JSON)"
+#: cases/02-country_facts_json.php:13
+msgid "Country Facts (JSON)"
+msgstr "देशका तथ्यहरू (JSON)"
 
-#: cases/3-tracking_extraction.php:13
+#: cases/03-tracking_extraction.php:13
 msgid "Tracking Extraction (JSON)"
 msgstr "ट्र्याकिङ निष्कर्षण (JSON)"
 
-#: cases/4-customer_triage.php:13
+#: cases/04-customer_triage.php:13
 msgid "Customer Triage"
 msgstr "ग्राहक वर्गीकरण"
 
-#: cases/5-ambiguous_item.php:13
+#: cases/05-ambiguous_item.php:13
 msgid "Ambiguous Item (JSON)"
 msgstr "अस्पष्ट आइटम (JSON)"
 
-#: cases/6-deploy_steps_xml.php:13
+#: cases/06-deploy_steps_xml.php:13
 msgid "Deploy Steps (XML)"
 msgstr "स्थापनाका चरणहरू (XML)"
 
-#: cases/7-performance_score.php:13
+#: cases/07-performance_score.php:13
 msgid "Performance Score"
 msgstr "कार्यसम्पादन स्कोर"
 
-#: cases/8-prompt_injection.php:13
+#: cases/08-prompt_injection.php:13
 msgid "Prompt Injection Resistance"
 msgstr "प्रम्प्ट इन्जेक्सन प्रतिरोध"
 
-#: cases/9-php_query_wrapper.php:13
+#: cases/09-php_query_wrapper.php:13
 msgid "PHP Query Wrapper (Fenced Code)"
 msgstr "PHP क्वेरी र्‍यापर (सीमांकित कोड)"
+
+#: cases/10-letter_counting.php:13
+msgid "Letter Counting"
+msgstr "अक्षर गणना"
+
+#: cases/11-grounded_refusal.php:13
+msgid "Grounded Refusal"
+msgstr "आधारभूत अस्वीकार"
+
+#: cases/12-exact_word_count.php:13
+msgid "Exact Word Count"
+msgstr "सही शब्द गणना"
+
+#: cases/13-negative_constraint.php:13
+msgid "Negative Constraint"
+msgstr "नकारात्मक अवरोध"
+
+#: cases/14-neutral_sentiment.php:13
+msgid "Neutral Sentiment"
+msgstr "तटस्थ भावना"
+
+#: cases/15-markdown_table.php:13
+msgid "Markdown Table"
+msgstr "मार्कडाउन टेबुल"
