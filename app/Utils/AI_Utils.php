@@ -107,15 +107,16 @@ class AI_Utils {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param string $prompt   User prompt.
-	 * @param string $system   System instruction.
-	 * @param string $provider Provider ID.
-	 * @param string $model_id Model ID.
+	 * @param string $prompt      User prompt.
+	 * @param string $system      System instruction.
+	 * @param string $provider    Provider ID.
+	 * @param string $model_id    Model ID.
+	 * @param bool   $exact_match Whether the test case requires an exact-match output.
 	 * @return object Prompt builder.
 	 */
-	public static function build_prompt( string $prompt, string $system, string $provider, string $model_id ) {
+	public static function build_prompt( string $prompt, string $system, string $provider, string $model_id, bool $exact_match = false ) {
 		$builder = wp_ai_client_prompt( $prompt );
-		$builder = $builder->using_temperature( 0.2 );
+		$builder = $builder->using_temperature( $exact_match ? 0.0 : 0.2 );
 
 		if ( '' !== $system ) {
 			$builder = $builder->using_system_instruction( $system );

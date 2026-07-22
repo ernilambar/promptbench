@@ -168,6 +168,7 @@ import './main.css';
 		body.append( 'model', modelSelect.value );
 		body.append( 'system', system );
 		body.append( 'prompt', prompt );
+		body.append( 'exact_match', currentTestCase && currentTestCase.exact_match ? '1' : '' );
 
 		fetch( promptbenchData.ajaxUrl, { method: 'POST', body: body } )
 			.then( function ( r ) {
