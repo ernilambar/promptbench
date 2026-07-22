@@ -216,16 +216,17 @@ class Admin_Page {
 			wp_send_json_error( __( 'WordPress AI client not available.', 'promptbench' ) );
 		}
 
-		$prompt   = isset( $_POST['prompt'] ) ? sanitize_textarea_field( wp_unslash( $_POST['prompt'] ) ) : '';
-		$system   = isset( $_POST['system'] ) ? sanitize_textarea_field( wp_unslash( $_POST['system'] ) ) : '';
-		$provider = isset( $_POST['provider'] ) ? sanitize_text_field( wp_unslash( $_POST['provider'] ) ) : '';
-		$model_id = isset( $_POST['model'] ) ? sanitize_text_field( wp_unslash( $_POST['model'] ) ) : '';
+		$prompt      = isset( $_POST['prompt'] ) ? sanitize_textarea_field( wp_unslash( $_POST['prompt'] ) ) : '';
+		$system      = isset( $_POST['system'] ) ? sanitize_textarea_field( wp_unslash( $_POST['system'] ) ) : '';
+		$provider    = isset( $_POST['provider'] ) ? sanitize_text_field( wp_unslash( $_POST['provider'] ) ) : '';
+		$model_id    = isset( $_POST['model'] ) ? sanitize_text_field( wp_unslash( $_POST['model'] ) ) : '';
+		$exact_match = isset( $_POST['exact_match'] ) && '1' === $_POST['exact_match'];
 
 		if ( '' === $prompt ) {
 			wp_send_json_error( __( 'Prompt is required.', 'promptbench' ) );
 		}
 
-		$builder = AI_Utils::build_prompt( $prompt, $system, $provider, $model_id );
+		$builder = AI_Utils::build_prompt( $prompt, $system, $provider, $model_id, $exact_match );
 
 		if ( ! $builder->is_supported_for_text_generation() ) {
 			wp_send_json_error( __( 'No AI provider is configured.', 'promptbench' ) );

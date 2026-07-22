@@ -37,24 +37,29 @@ only class wired into WordPress hooks (`admin_menu`, `wp_ajax_promptbench_prompt
 
 - **`Admin\Admin_Page`** — renders the admin page and handles the `promptbench_prompt` AJAX
   action. `get_page_data()` assembles providers, test cases, and a nonce once per request
-  (memoized in a static) and localizes them into `promptbenchData` for `assets/main.js`.
-  `handle_prompt()` builds a prompt via `AI_Utils::build_prompt()`, runs it, and returns
-  output + metadata + debug info (raw system/user prompt and raw response) as JSON.
+  (memoized in a static) and localizes them into `promptbenchData` for `src/main.js`.
+  `handle_prompt()` reads the posted `exact_match` flag (set by the active test case),
+  builds a prompt via `AI_Utils::build_prompt()`, runs it, and returns output + metadata +
+  debug info (raw system/user prompt and raw response) as JSON.
 - **`Utils\AI_Utils`** — all interaction with the AI Client registry: listing configured
   providers/models (`get_providers_with_models()`, merging connector-registered and
   directly-registered providers), constructing the prompt builder with the chosen
   system instruction/provider/model (`build_prompt()`), and normalizing a result object's
   provider/model/token-usage metadata (`extract_meta()`) via `method_exists()` checks since
-  the result object's shape isn't controlled by this plugin.
+  the result object's shape isn't controlled by this plugin. `build_prompt()` sets
+  temperature `0.0` for exact-match test cases (deterministic single-token/JSON output) and
+  `0.2` otherwise, so exact-match runs aren't flaky due to sampling noise.
 - **`Utils\Case_Utils`** — loads test cases by `glob()`-ing `cases/*.php` and `require`-ing
   each file, keying by filename with the leading `\d+-` sort prefix stripped. Each case file
   returns an array with `label`, `system`, `user`, `expected`, `exact_match`.
 - **`cases/*.php`** — the numeric filename prefix (`1-`, `2-`, …) controls only display order,
   not the case ID used elsewhere. Adding a new benchmark case is just adding a new file here.
-- **`assets/main.js`** — vanilla JS (no build step). Populates the model `<select>` from
-  `providerModels` when the provider changes, remembers the last-used provider/model in
-  `localStorage`, swaps system/user/expected text when a test-case pill is clicked, and POSTs
-  to `admin-ajax.php` on submit. Renders a "Final Prompt (Debug)" panel showing the exact
+- **`src/main.js`** — built via `vite` (`pnpm build`) into `build/main.js`, which is what
+  `Admin_Page` actually enqueues (not committed — `/build/` is gitignored). Populates the
+  model `<select>` from `providerModels` when the provider changes, remembers the last-used
+  provider/model in `localStorage`, swaps system/user/expected text and the `exact_match`
+  flag when a test-case pill is clicked, and POSTs to `admin-ajax.php` on submit (including
+  that `exact_match` flag). Renders a "Final Prompt (Debug)" panel showing the exact
   system/user prompt sent and the raw provider response JSON.
 
 ## Coding standard notes
