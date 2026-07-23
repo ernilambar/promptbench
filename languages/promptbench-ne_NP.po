@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-07-22T08:36:56+00:00\n"
+"PO-Revision-Date: 2026-07-23T15:00:19+00:00\n"
 "Language: ne_NP\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: promptbench\n"
@@ -163,3 +163,7 @@ msgstr "तटस्थ भावना"
 #: cases/15-markdown_table.php:13
 msgid "Markdown Table"
 msgstr "मार्कडाउन टेबुल"
+
+#: cases/16-nested_json_extraction.php:13
+msgid "Nested JSON Extraction"
+msgstr "नेस्टेड JSON निष्कासन"

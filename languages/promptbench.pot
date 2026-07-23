@@ -164,3 +164,7 @@ msgstr ""
 #: cases/15-markdown_table.php:13
 msgid "Markdown Table"
 msgstr ""
+
+#: cases/16-nested_json_extraction.php:13
+msgid "Nested JSON Extraction"
+msgstr ""
