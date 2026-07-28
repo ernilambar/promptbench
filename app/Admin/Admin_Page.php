@@ -170,10 +170,10 @@ class Admin_Page {
 							<textarea id="promptbench-prompt"><?php echo esc_textarea( $default['user'] ); ?></textarea>
 						</span>
 					</p>
-					<p>
+					<div id="promptbench-expected-wrap"<?php echo '' === $default['expected'] ? ' style="display:none;"' : ''; ?>>
 						<label><?php esc_html_e( 'Expected Output', 'promptbench' ); ?></label>
 						<div id="promptbench-expected"><?php echo esc_html( $default['expected'] ); ?></div>
-					</p>
+					</div>
 					<button id="promptbench-submit" class="button button-primary"><?php esc_html_e( 'Submit', 'promptbench' ); ?></button>
 					<span id="promptbench-spinner" class="spinner"></span>
 				<?php endif; ?>

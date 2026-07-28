@@ -14,6 +14,7 @@ import './main.css';
 	var systemPromptTextarea = document.getElementById( 'promptbench-system-prompt' );
 	var promptTextarea = document.getElementById( 'promptbench-prompt' );
 	var expectedEl = document.getElementById( 'promptbench-expected' );
+	var expectedWrap = document.getElementById( 'promptbench-expected-wrap' );
 	var outputEl = document.getElementById( 'promptbench-output' );
 	var metaEl = document.getElementById( 'promptbench-meta' );
 	var promptDebugEl = document.getElementById( 'promptbench-prompt-debug' );
@@ -35,6 +36,9 @@ import './main.css';
 			systemPromptTextarea.value = testCase.system;
 			promptTextarea.value = testCase.user;
 			expectedEl.textContent = testCase.expected;
+			if ( expectedWrap ) {
+				expectedWrap.style.display = testCase.expected ? '' : 'none';
+			}
 			currentTestCase = testCase;
 
 			outputEl.style.display = 'none';

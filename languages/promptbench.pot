@@ -153,10 +153,6 @@ msgstr ""
 msgid "Exact Word Count"
 msgstr ""
 
-#: cases/13-negative_constraint.php:13
-msgid "Negative Constraint"
-msgstr ""
-
 #: cases/14-neutral_sentiment.php:13
 msgid "Neutral Sentiment"
 msgstr ""
@@ -167,4 +163,8 @@ msgstr ""
 
 #: cases/16-nested_json_extraction.php:13
 msgid "Nested JSON Extraction"
+msgstr ""
+
+#: cases/99-custom_prompt.php:13
+msgid "Custom Prompt"
 msgstr ""
