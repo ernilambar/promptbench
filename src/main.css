@@ -2,7 +2,8 @@
 	max-width: 1200px;
 	margin-top: 20px;
 }
-#promptbench-form p {
+#promptbench-form p,
+#promptbench-form #promptbench-expected-wrap {
 	margin-bottom: 12px;
 }
 #promptbench-form label {

@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-07-23T15:00:19+00:00\n"
+"PO-Revision-Date: 2026-07-28T11:00:40+00:00\n"
 "Language: ne_NP\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: promptbench\n"
@@ -152,10 +152,6 @@ msgstr "आधारभूत अस्वीकार"
 msgid "Exact Word Count"
 msgstr "सही शब्द गणना"
 
-#: cases/13-negative_constraint.php:13
-msgid "Negative Constraint"
-msgstr "नकारात्मक अवरोध"
-
 #: cases/14-neutral_sentiment.php:13
 msgid "Neutral Sentiment"
 msgstr "तटस्थ भावना"
@@ -167,3 +163,7 @@ msgstr "मार्कडाउन टेबुल"
 #: cases/16-nested_json_extraction.php:13
 msgid "Nested JSON Extraction"
 msgstr "नेस्टेड JSON निष्कासन"
+
+#: cases/99-custom_prompt.php:13
+msgid "Custom Prompt"
+msgstr "कस्टम प्रम्प्ट"
