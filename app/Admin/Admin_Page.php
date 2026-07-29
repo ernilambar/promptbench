@@ -92,6 +92,7 @@ class Admin_Page {
 				'ajaxUrl'        => admin_url( 'admin-ajax.php' ),
 				'errorGeneric'   => __( 'An error occurred.', 'promptbench' ),
 				'requestFailed'  => __( 'Request failed.', 'promptbench' ),
+				'selectOption'   => __( '&mdash; Select &mdash;', 'promptbench' ),
 			]
 		);
 	}

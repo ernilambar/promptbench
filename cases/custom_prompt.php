@@ -1,6 +1,6 @@
 <?php
 /**
- * Test case: Blank Input.
+ * Test case: Custom Prompt.
  *
  * @package Nilambar\Promptbench
  */

@@ -93,7 +93,7 @@ import './main.css';
 		modelSelect.innerHTML = '';
 		const placeholder = document.createElement( 'option' );
 		placeholder.value = '';
-		placeholder.text = '- Select -';
+		placeholder.text = promptbenchData.selectOption;
 		modelSelect.appendChild( placeholder );
 		models.forEach( function ( m ) {
 			const opt = document.createElement( 'option' );

@@ -7,7 +7,7 @@
 
 namespace Nilambar\Promptbench\Utils;
 
-use Exception;
+use Throwable;
 use WordPress\AiClient\AiClient;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -58,7 +58,7 @@ class AI_Utils {
 							'name' => $model->getName(),
 						];
 					}
-				} catch ( Exception $e ) {
+				} catch ( Throwable $e ) {
 					continue;
 				}
 			}
@@ -90,11 +90,11 @@ class AI_Utils {
 							'name'   => $provider_class::metadata()->getName(),
 							'models' => $models,
 						];
-					} catch ( Exception $e ) {
+					} catch ( Throwable $e ) {
 						continue;
 					}
 				}
-			} catch ( Exception $e ) {
+			} catch ( Throwable $e ) {
 				unset( $e );
 			}
 		}
@@ -127,7 +127,7 @@ class AI_Utils {
 				$registry = AiClient::defaultRegistry();
 				$model    = $registry->getProviderModel( $provider, $model_id );
 				$builder  = $builder->using_model( $model );
-			} catch ( Exception $e ) {
+			} catch ( Throwable $e ) {
 				if ( '' !== $provider ) {
 					$builder = $builder->using_provider( $provider );
 				}

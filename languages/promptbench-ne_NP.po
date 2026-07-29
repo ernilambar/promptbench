@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-07-29T05:17:11+00:00\n"
+"PO-Revision-Date: 2026-07-29T05:54:52+00:00\n"
 "Language: ne_NP\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: promptbench\n"
@@ -21,12 +21,12 @@ msgstr "Promptbench"
 #. Plugin URI of the plugin
 #: promptbench.php:4
 msgid "https://github.com/ernilambar/promptbench"
-msgstr ""
+msgstr "https://github.com/ernilambar/promptbench"
 
 #. Description of the plugin
 #: promptbench.php:5
 msgid "Test AI prompts from the WordPress admin."
-msgstr ""
+msgstr "वर्डप्रेस एड्मिनबाट एआई प्रम्प्टहरू परीक्षण गर्नुहोस्।"
 
 #. Author of the plugin
 #: promptbench.php:9
@@ -57,59 +57,63 @@ msgstr "एउटा त्रुटि भयो।"
 msgid "Request failed."
 msgstr "अनुरोध असफल भयो।"
 
-#: app/Admin/Admin_Page.php:143
+#: app/Admin/Admin_Page.php:95
+msgid "&mdash; Select &mdash;"
+msgstr "— छान्नुहोस् —"
+
+#: app/Admin/Admin_Page.php:144
 msgid "No AI providers configured. Please configure a provider under Settings > Connectors."
 msgstr "कुनै एआई प्रोभाइडर कन्फिगर गरिएको छैन। कृपया सेटिङहरू > कनेक्टरहरू अन्तर्गत एक प्रोभाइडर कन्फिगर गर्नुहोस्।"
 
-#: app/Admin/Admin_Page.php:147
+#: app/Admin/Admin_Page.php:148
 msgid "Provider"
 msgstr "प्रोभाइडर"
 
-#: app/Admin/Admin_Page.php:155
+#: app/Admin/Admin_Page.php:156
 msgid "Model"
 msgstr "मोडेल"
 
-#: app/Admin/Admin_Page.php:160
+#: app/Admin/Admin_Page.php:161
 msgid "Test Case"
 msgstr "टेस्ट केस"
 
-#: app/Admin/Admin_Page.php:166
+#: app/Admin/Admin_Page.php:167
 msgid "More…"
 msgstr "थप…"
 
-#: app/Admin/Admin_Page.php:172
+#: app/Admin/Admin_Page.php:173
 msgid "System Prompt"
 msgstr "सिस्टम प्रम्प्ट"
 
-#: app/Admin/Admin_Page.php:176
+#: app/Admin/Admin_Page.php:177
 msgid "User Prompt"
 msgstr "प्रयोगकर्ता प्रम्प्ट"
 
-#: app/Admin/Admin_Page.php:181
+#: app/Admin/Admin_Page.php:182
 msgid "Expected Output"
 msgstr "अपेक्षित आउटपुट"
 
-#: app/Admin/Admin_Page.php:184
+#: app/Admin/Admin_Page.php:185
 msgid "Submit"
 msgstr "पेस गर्नुहोस्"
 
-#: app/Admin/Admin_Page.php:219
+#: app/Admin/Admin_Page.php:220
 msgid "Unauthorized."
 msgstr "अनधिकृत।"
 
-#: app/Admin/Admin_Page.php:223
+#: app/Admin/Admin_Page.php:224
 msgid "WordPress AI client not available."
 msgstr "वर्डप्रेस एआई क्लाइन्ट उपलब्ध छैन।"
 
-#: app/Admin/Admin_Page.php:233
+#: app/Admin/Admin_Page.php:234
 msgid "Prompt is required."
 msgstr "प्रम्प्ट आवश्यक छ।"
 
-#: app/Admin/Admin_Page.php:239
+#: app/Admin/Admin_Page.php:240
 msgid "No AI provider is configured."
 msgstr "कुनै एआई प्रोभाइडर कन्फिगर गरिएको छैन।"
 
-#: app/Admin/Admin_Page.php:249
+#: app/Admin/Admin_Page.php:250
 msgid "Unexpected response from AI provider."
 msgstr "एआई प्रोभाइडरबाट अनपेक्षित प्रतिक्रिया आयो।"
 

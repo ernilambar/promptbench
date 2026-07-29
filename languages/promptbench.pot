@@ -58,59 +58,63 @@ msgstr ""
 msgid "Request failed."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:143
+#: app/Admin/Admin_Page.php:95
+msgid "&mdash; Select &mdash;"
+msgstr ""
+
+#: app/Admin/Admin_Page.php:144
 msgid "No AI providers configured. Please configure a provider under Settings > Connectors."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:147
+#: app/Admin/Admin_Page.php:148
 msgid "Provider"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:155
+#: app/Admin/Admin_Page.php:156
 msgid "Model"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:160
+#: app/Admin/Admin_Page.php:161
 msgid "Test Case"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:166
+#: app/Admin/Admin_Page.php:167
 msgid "More…"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:172
+#: app/Admin/Admin_Page.php:173
 msgid "System Prompt"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:176
+#: app/Admin/Admin_Page.php:177
 msgid "User Prompt"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:181
+#: app/Admin/Admin_Page.php:182
 msgid "Expected Output"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:184
+#: app/Admin/Admin_Page.php:185
 msgid "Submit"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:219
+#: app/Admin/Admin_Page.php:220
 msgid "Unauthorized."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:223
+#: app/Admin/Admin_Page.php:224
 msgid "WordPress AI client not available."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:233
+#: app/Admin/Admin_Page.php:234
 msgid "Prompt is required."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:239
+#: app/Admin/Admin_Page.php:240
 msgid "No AI provider is configured."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:249
+#: app/Admin/Admin_Page.php:250
 msgid "Unexpected response from AI provider."
 msgstr ""
 
