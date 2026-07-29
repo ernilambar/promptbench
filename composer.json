@@ -6,6 +6,7 @@
     "dealerdirect/phpcodesniffer-composer-installer": "^1",
     "ernilambar/coding-standard": "^2",
     "php-parallel-lint/php-parallel-lint": "^1.4",
+    "phpcompatibility/php-compatibility": "^10",
     "slevomat/coding-standard": "^8",
     "wp-cli/i18n-command": "^2",
     "wp-cli/wp-cli": "^2.13",

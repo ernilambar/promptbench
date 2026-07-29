@@ -23,6 +23,9 @@
 	<!-- Minimum support WP Version. -->
 	<config name="minimum_wp_version" value="7.0"/>
 
+	<!-- PHP version check. -->
+	<config name="testVersion" value="8.0-"/>
+
 	<rule ref="NilambarCodingStandard"/>
 
 	<!-- Don't worry about files that don't contain any code -->
@@ -78,6 +81,13 @@
 	<!-- Sometimes we need to override globals -->
 	<rule ref="WordPress.WP.GlobalVariablesOverride.OverrideProhibited">
 		<type>warning</type>
+	</rule>
+
+	<!-- Loads the PHP Compatibility ruleset. -->
+	<rule ref="PHPCompatibility">
+		<exclude name="PHPCompatibility.FunctionUse.NewFunctions.str_containsFound"/>
+		<exclude name="PHPCompatibility.FunctionUse.NewFunctions.str_starts_withFound"/>
+		<exclude name="PHPCompatibility.FunctionUse.NewFunctions.str_ends_withFound"/>
 	</rule>
 
 	<!-- Disallows grouped use declarations. -->
