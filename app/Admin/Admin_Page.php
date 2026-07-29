@@ -29,7 +29,7 @@ class Admin_Page {
 	public function init(): void {
 		add_action( 'admin_menu', [ $this, 'add_admin_menu' ] );
 		add_action( 'wp_ajax_promptbench_prompt', [ $this, 'handle_prompt' ] );
-		add_filter( 'plugin_action_links_' . plugin_basename( PROMPTBENCH_FILE ), [ $this, 'add_action_links' ] );
+		add_filter( 'plugin_action_links_' . PROMPTBENCH_BASE_FILENAME, [ $this, 'add_action_links' ] );
 	}
 
 	/**
@@ -79,8 +79,8 @@ class Admin_Page {
 	public function enqueue_assets(): void {
 		$data = $this->get_page_data();
 
-		wp_enqueue_style( 'promptbench', plugins_url( 'build/main.css', PROMPTBENCH_FILE ), [], '1.0.0' );
-		wp_enqueue_script( 'promptbench', plugins_url( 'build/main.js', PROMPTBENCH_FILE ), [], '1.0.0', true );
+		wp_enqueue_style( 'promptbench', PROMPTBENCH_URL . 'build/main.css', [], PROMPTBENCH_VERSION );
+		wp_enqueue_script( 'promptbench', PROMPTBENCH_URL . 'build/main.js', [], PROMPTBENCH_VERSION, true );
 
 		wp_localize_script(
 			'promptbench',

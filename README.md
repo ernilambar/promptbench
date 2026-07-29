@@ -1,24 +1,44 @@
 # Promptbench
 
-A WordPress admin tool for manually testing prompts against configured AI providers/models, using WordPress core's AI Client infrastructure.
+WP-Admin tool for testing prompts against configured AI providers.
 
-## Features
-
-- Pick an AI provider and model from your site's configured connectors.
-- Edit system and user prompts and run them on demand.
-- View the response along with provider, model, and token-usage metadata.
-- Inspect the exact prompt sent and the raw provider response for debugging.
-- Load prebuilt test cases as a starting point.
+Requires an AI provider configured via the WordPress AI Client.
 
 ## Requirements
 
-- WordPress 7.0+
 - PHP 8.0+
+- WordPress 7.0+
 
-## Usage
+## Installation
 
-Go to **Tools > Promptbench** in wp-admin, choose a provider/model, enter a system and user prompt (or select a test case), and submit.
+1. Install and activate the plugin.
+2. Install and configure a compatible AI provider plugin.
+3. Access the tool under **Tools > Promptbench**.
+
+## Development
+
+```bash
+composer install
+pnpm install
+pnpm build
+```
+
+Run linting:
+
+```bash
+composer lint        # check
+composer format      # auto-fix
+```
+
+## Contributing
+
+1. Fork the repository and create a feature branch.
+2. Run `composer install && pnpm install` to set up the environment.
+3. Make your changes. Run `pnpm build` and `composer lint` — both must pass with zero errors.
+4. Open a pull request against `main` with a clear description of what and why.
+
+Bug reports are welcome via [GitHub Issues](https://github.com/ernilambar/promptbench/issues).
 
 ## License
 
-GPLv2 or later. See [https://www.gnu.org/licenses/old-licenses/gpl-2.0.html](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
+[GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)

@@ -19,18 +19,23 @@ msgstr ""
 msgid "Promptbench"
 msgstr ""
 
-#. Description of the plugin
+#. Plugin URI of the plugin
 #: promptbench.php:4
-msgid "Promptbench plugin."
+msgid "https://github.com/ernilambar/promptbench"
+msgstr ""
+
+#. Description of the plugin
+#: promptbench.php:5
+msgid "Test AI prompts from the WordPress admin."
 msgstr ""
 
 #. Author of the plugin
-#: promptbench.php:8
+#: promptbench.php:9
 msgid "Nilambar Sharma"
 msgstr ""
 
 #. Author URI of the plugin
-#: promptbench.php:9
+#: promptbench.php:10
 msgid "https://nilambar.net/"
 msgstr ""
 

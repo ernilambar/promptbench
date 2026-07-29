@@ -1,0 +1,12 @@
+{
+	"files": [
+		"app/**/*",
+		"build/**/*",
+		"cases/**/*",
+		"languages/**/*",
+		"vendor/**/*",
+		"promptbench.php",
+		"readme.txt",
+		"!**/*.bak"
+	]
+}

@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-07-29T04:49:53+00:00\n"
+"PO-Revision-Date: 2026-07-29T05:17:11+00:00\n"
 "Language: ne_NP\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: promptbench\n"
@@ -18,18 +18,23 @@ msgstr ""
 msgid "Promptbench"
 msgstr "Promptbench"
 
-#. Description of the plugin
+#. Plugin URI of the plugin
 #: promptbench.php:4
-msgid "Promptbench plugin."
-msgstr "प्रम्प्टबेन्च प्लगिन।"
+msgid "https://github.com/ernilambar/promptbench"
+msgstr ""
+
+#. Description of the plugin
+#: promptbench.php:5
+msgid "Test AI prompts from the WordPress admin."
+msgstr ""
 
 #. Author of the plugin
-#: promptbench.php:8
+#: promptbench.php:9
 msgid "Nilambar Sharma"
 msgstr "निलाम्वर शर्मा"
 
 #. Author URI of the plugin
-#: promptbench.php:9
+#: promptbench.php:10
 msgid "https://nilambar.net/"
 msgstr "https://nilambar.net/"
 
