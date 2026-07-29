@@ -9,6 +9,20 @@ import './main.css';
 	const providerModels = promptbenchData.providerModels;
 	const modelStorageKey = 'promptbench_model';
 
+	function getSavedModels() {
+		try {
+			return JSON.parse( localStorage.getItem( modelStorageKey ) ) || {};
+		} catch ( err ) {
+			return {};
+		}
+	}
+
+	function setSavedModel( providerId, modelId ) {
+		const models = getSavedModels();
+		models[ providerId ] = modelId;
+		localStorage.setItem( modelStorageKey, JSON.stringify( models ) );
+	}
+
 	const testCases = promptbenchData.testCases;
 	const testCasePills = document.getElementById( 'promptbench-testcase' );
 	const systemPromptTextarea = document.getElementById( 'promptbench-system-prompt' );
@@ -101,6 +115,11 @@ import './main.css';
 			opt.text = m.name !== m.id ? m.name + ' (' + m.id + ')' : m.id;
 			modelSelect.appendChild( opt );
 		} );
+
+		const savedModel = getSavedModels()[ providerId ];
+		if ( savedModel && modelSelect.querySelector( 'option[value="' + savedModel + '"]' ) ) {
+			modelSelect.value = savedModel;
+		}
 	}
 
 	const storageKey = 'promptbench_provider';
@@ -110,19 +129,13 @@ import './main.css';
 	}
 	populateModels( select.value );
 
-	const savedModel = localStorage.getItem( modelStorageKey );
-	if ( savedModel && modelSelect.querySelector( 'option[value="' + savedModel + '"]' ) ) {
-		modelSelect.value = savedModel;
-	}
-
 	select.addEventListener( 'change', function () {
 		localStorage.setItem( storageKey, select.value );
-		localStorage.removeItem( modelStorageKey );
 		populateModels( select.value );
 	} );
 
 	modelSelect.addEventListener( 'change', function () {
-		localStorage.setItem( modelStorageKey, modelSelect.value );
+		setSavedModel( select.value, modelSelect.value );
 	} );
 
 	function buildMetaLines( meta ) {
