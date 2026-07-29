@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-07-28T11:00:40+00:00\n"
+"PO-Revision-Date: 2026-07-29T04:46:03+00:00\n"
 "Language: ne_NP\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: promptbench\n"
@@ -52,118 +52,122 @@ msgstr "एउटा त्रुटि भयो।"
 msgid "Request failed."
 msgstr "अनुरोध असफल भयो।"
 
-#: app/Admin/Admin_Page.php:139
+#: app/Admin/Admin_Page.php:143
 msgid "No AI providers configured. Please configure a provider under Settings > Connectors."
 msgstr "कुनै एआई प्रोभाइडर कन्फिगर गरिएको छैन। कृपया सेटिङहरू > कनेक्टरहरू अन्तर्गत एक प्रोभाइडर कन्फिगर गर्नुहोस्।"
 
-#: app/Admin/Admin_Page.php:143
+#: app/Admin/Admin_Page.php:147
 msgid "Provider"
 msgstr "प्रोभाइडर"
 
-#: app/Admin/Admin_Page.php:151
+#: app/Admin/Admin_Page.php:155
 msgid "Model"
 msgstr "मोडेल"
 
-#: app/Admin/Admin_Page.php:156
+#: app/Admin/Admin_Page.php:160
 msgid "Test Case"
 msgstr "टेस्ट केस"
 
-#: app/Admin/Admin_Page.php:165
+#: app/Admin/Admin_Page.php:166
+msgid "More…"
+msgstr "थप…"
+
+#: app/Admin/Admin_Page.php:172
 msgid "System Prompt"
 msgstr "सिस्टम प्रम्प्ट"
 
-#: app/Admin/Admin_Page.php:169
+#: app/Admin/Admin_Page.php:176
 msgid "User Prompt"
 msgstr "प्रयोगकर्ता प्रम्प्ट"
 
-#: app/Admin/Admin_Page.php:174
+#: app/Admin/Admin_Page.php:181
 msgid "Expected Output"
 msgstr "अपेक्षित आउटपुट"
 
-#: app/Admin/Admin_Page.php:177
+#: app/Admin/Admin_Page.php:184
 msgid "Submit"
 msgstr "पेस गर्नुहोस्"
 
-#: app/Admin/Admin_Page.php:212
+#: app/Admin/Admin_Page.php:219
 msgid "Unauthorized."
 msgstr "अनधिकृत।"
 
-#: app/Admin/Admin_Page.php:216
+#: app/Admin/Admin_Page.php:223
 msgid "WordPress AI client not available."
 msgstr "वर्डप्रेस एआई क्लाइन्ट उपलब्ध छैन।"
 
-#: app/Admin/Admin_Page.php:226
+#: app/Admin/Admin_Page.php:233
 msgid "Prompt is required."
 msgstr "प्रम्प्ट आवश्यक छ।"
 
-#: app/Admin/Admin_Page.php:232
+#: app/Admin/Admin_Page.php:239
 msgid "No AI provider is configured."
 msgstr "कुनै एआई प्रोभाइडर कन्फिगर गरिएको छैन।"
 
-#: app/Admin/Admin_Page.php:242
+#: app/Admin/Admin_Page.php:249
 msgid "Unexpected response from AI provider."
 msgstr "एआई प्रोभाइडरबाट अनपेक्षित प्रतिक्रिया आयो।"
 
-#: cases/01-country_facts.php:13
-msgid "Country Facts"
-msgstr "देशका तथ्यहरू"
-
-#: cases/02-country_facts_json.php:13
-msgid "Country Facts (JSON)"
-msgstr "देशका तथ्यहरू (JSON)"
-
-#: cases/03-tracking_extraction.php:13
-msgid "Tracking Extraction (JSON)"
-msgstr "ट्र्याकिङ निष्कर्षण (JSON)"
-
-#: cases/04-customer_triage.php:13
-msgid "Customer Triage"
-msgstr "ग्राहक वर्गीकरण"
-
-#: cases/05-ambiguous_item.php:13
+#: cases/ambiguous_item.php:14
 msgid "Ambiguous Item (JSON)"
 msgstr "अस्पष्ट आइटम (JSON)"
 
-#: cases/06-deploy_steps_xml.php:13
+#: cases/country_facts.php:14
+msgid "Country Facts"
+msgstr "देशका तथ्यहरू"
+
+#: cases/country_facts_json.php:14
+msgid "Country Facts (JSON)"
+msgstr "देशका तथ्यहरू (JSON)"
+
+#: cases/customer_triage.php:14
+msgid "Customer Triage"
+msgstr "ग्राहक वर्गीकरण"
+
+#: cases/custom_prompt.php:14
+msgid "Custom Prompt"
+msgstr "कस्टम प्रम्प्ट"
+
+#: cases/deploy_steps_xml.php:14
 msgid "Deploy Steps (XML)"
 msgstr "स्थापनाका चरणहरू (XML)"
 
-#: cases/07-performance_score.php:13
-msgid "Performance Score"
-msgstr "कार्यसम्पादन स्कोर"
-
-#: cases/08-prompt_injection.php:13
-msgid "Prompt Injection Resistance"
-msgstr "प्रम्प्ट इन्जेक्सन प्रतिरोध"
-
-#: cases/09-php_query_wrapper.php:13
-msgid "PHP Query Wrapper (Fenced Code)"
-msgstr "PHP क्वेरी र्‍यापर (सीमांकित कोड)"
-
-#: cases/10-letter_counting.php:13
-msgid "Letter Counting"
-msgstr "अक्षर गणना"
-
-#: cases/11-grounded_refusal.php:13
-msgid "Grounded Refusal"
-msgstr "आधारभूत अस्वीकार"
-
-#: cases/12-exact_word_count.php:13
+#: cases/exact_word_count.php:14
 msgid "Exact Word Count"
 msgstr "सही शब्द गणना"
 
-#: cases/14-neutral_sentiment.php:13
-msgid "Neutral Sentiment"
-msgstr "तटस्थ भावना"
+#: cases/grounded_refusal.php:14
+msgid "Grounded Refusal"
+msgstr "आधारभूत अस्वीकार"
 
-#: cases/15-markdown_table.php:13
+#: cases/letter_counting.php:14
+msgid "Letter Counting"
+msgstr "अक्षर गणना"
+
+#: cases/markdown_table.php:14
 msgid "Markdown Table"
 msgstr "मार्कडाउन टेबुल"
 
-#: cases/16-nested_json_extraction.php:13
+#: cases/nested_json_extraction.php:14
 msgid "Nested JSON Extraction"
 msgstr "नेस्टेड JSON निष्कासन"
 
-#: cases/99-custom_prompt.php:13
-msgid "Custom Prompt"
-msgstr "कस्टम प्रम्प्ट"
+#: cases/neutral_sentiment.php:14
+msgid "Neutral Sentiment"
+msgstr "तटस्थ भावना"
+
+#: cases/performance_score.php:14
+msgid "Performance Score"
+msgstr "कार्यसम्पादन स्कोर"
+
+#: cases/php_query_wrapper.php:14
+msgid "PHP Query Wrapper (Fenced Code)"
+msgstr "PHP क्वेरी र्‍यापर (सीमांकित कोड)"
+
+#: cases/prompt_injection.php:14
+msgid "Prompt Injection Resistance"
+msgstr "प्रम्प्ट इन्जेक्सन प्रतिरोध"
+
+#: cases/tracking_extraction.php:14
+msgid "Tracking Extraction (JSON)"
+msgstr "ट्र्याकिङ निष्कर्षण (JSON)"

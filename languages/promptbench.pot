@@ -53,118 +53,122 @@ msgstr ""
 msgid "Request failed."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:139
+#: app/Admin/Admin_Page.php:143
 msgid "No AI providers configured. Please configure a provider under Settings > Connectors."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:143
+#: app/Admin/Admin_Page.php:147
 msgid "Provider"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:151
+#: app/Admin/Admin_Page.php:155
 msgid "Model"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:156
+#: app/Admin/Admin_Page.php:160
 msgid "Test Case"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:165
+#: app/Admin/Admin_Page.php:166
+msgid "More…"
+msgstr ""
+
+#: app/Admin/Admin_Page.php:172
 msgid "System Prompt"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:169
+#: app/Admin/Admin_Page.php:176
 msgid "User Prompt"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:174
+#: app/Admin/Admin_Page.php:181
 msgid "Expected Output"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:177
+#: app/Admin/Admin_Page.php:184
 msgid "Submit"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:212
+#: app/Admin/Admin_Page.php:219
 msgid "Unauthorized."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:216
+#: app/Admin/Admin_Page.php:223
 msgid "WordPress AI client not available."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:226
+#: app/Admin/Admin_Page.php:233
 msgid "Prompt is required."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:232
+#: app/Admin/Admin_Page.php:239
 msgid "No AI provider is configured."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:242
+#: app/Admin/Admin_Page.php:249
 msgid "Unexpected response from AI provider."
 msgstr ""
 
-#: cases/01-country_facts.php:13
-msgid "Country Facts"
-msgstr ""
-
-#: cases/02-country_facts_json.php:13
-msgid "Country Facts (JSON)"
-msgstr ""
-
-#: cases/03-tracking_extraction.php:13
-msgid "Tracking Extraction (JSON)"
-msgstr ""
-
-#: cases/04-customer_triage.php:13
-msgid "Customer Triage"
-msgstr ""
-
-#: cases/05-ambiguous_item.php:13
+#: cases/ambiguous_item.php:14
 msgid "Ambiguous Item (JSON)"
 msgstr ""
 
-#: cases/06-deploy_steps_xml.php:13
+#: cases/country_facts.php:14
+msgid "Country Facts"
+msgstr ""
+
+#: cases/country_facts_json.php:14
+msgid "Country Facts (JSON)"
+msgstr ""
+
+#: cases/customer_triage.php:14
+msgid "Customer Triage"
+msgstr ""
+
+#: cases/custom_prompt.php:14
+msgid "Custom Prompt"
+msgstr ""
+
+#: cases/deploy_steps_xml.php:14
 msgid "Deploy Steps (XML)"
 msgstr ""
 
-#: cases/07-performance_score.php:13
-msgid "Performance Score"
-msgstr ""
-
-#: cases/08-prompt_injection.php:13
-msgid "Prompt Injection Resistance"
-msgstr ""
-
-#: cases/09-php_query_wrapper.php:13
-msgid "PHP Query Wrapper (Fenced Code)"
-msgstr ""
-
-#: cases/10-letter_counting.php:13
-msgid "Letter Counting"
-msgstr ""
-
-#: cases/11-grounded_refusal.php:13
-msgid "Grounded Refusal"
-msgstr ""
-
-#: cases/12-exact_word_count.php:13
+#: cases/exact_word_count.php:14
 msgid "Exact Word Count"
 msgstr ""
 
-#: cases/14-neutral_sentiment.php:13
-msgid "Neutral Sentiment"
+#: cases/grounded_refusal.php:14
+msgid "Grounded Refusal"
 msgstr ""
 
-#: cases/15-markdown_table.php:13
+#: cases/letter_counting.php:14
+msgid "Letter Counting"
+msgstr ""
+
+#: cases/markdown_table.php:14
 msgid "Markdown Table"
 msgstr ""
 
-#: cases/16-nested_json_extraction.php:13
+#: cases/nested_json_extraction.php:14
 msgid "Nested JSON Extraction"
 msgstr ""
 
-#: cases/99-custom_prompt.php:13
-msgid "Custom Prompt"
+#: cases/neutral_sentiment.php:14
+msgid "Neutral Sentiment"
+msgstr ""
+
+#: cases/performance_score.php:14
+msgid "Performance Score"
+msgstr ""
+
+#: cases/php_query_wrapper.php:14
+msgid "PHP Query Wrapper (Fenced Code)"
+msgstr ""
+
+#: cases/prompt_injection.php:14
+msgid "Prompt Injection Resistance"
+msgstr ""
+
+#: cases/tracking_extraction.php:14
+msgid "Tracking Extraction (JSON)"
 msgstr ""
