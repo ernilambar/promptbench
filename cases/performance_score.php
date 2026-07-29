@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'        => 70,
 	'label'          => __( 'Performance Score', 'promptbench' ),
 	'system'         => 'Rules:'
 		. "\n" . '1. Scan the text below for "Execution Time" (in ms) and "Memory Limit" (in MB).'

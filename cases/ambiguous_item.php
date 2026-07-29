@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'     => 50,
 	'label'       => __( 'Ambiguous Item (JSON)', 'promptbench' ),
 	'system'      => 'You are an order processing assistant. You must parse ambiguous items. If the item name is ambiguous (e.g., matches multiple products), you must output a JSON error block with "error": "ambiguous_item" and a list of possible matches. Respond only with valid JSON. No markdown, no code fences, no commentary.',
 	'user'        => 'Product Catalog:'

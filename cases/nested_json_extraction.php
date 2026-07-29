@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'        => 160,
 	'label'          => __( 'Nested JSON Extraction', 'promptbench' ),
 	'system'         => 'Extract the customer and order details from the message below.'
 		. "\n\n" . 'Your response MUST be formatted strictly as a JSON object using this exact two-level schema:'

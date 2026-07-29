@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'        => 40,
 	'label'          => __( 'Customer Triage', 'promptbench' ),
 	'system'         => 'Rules:'
 		. "\n" . '1. Read the following customer request.'

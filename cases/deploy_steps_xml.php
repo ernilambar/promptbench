@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'     => 60,
 	'label'       => __( 'Deploy Steps (XML)', 'promptbench' ),
 	'system'      => 'Constraints:'
 		. "\n" . '1. You must provide exactly 4 steps.'

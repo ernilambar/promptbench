@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'        => 140,
 	'label'          => __( 'Neutral Sentiment', 'promptbench' ),
 	'system'         => 'Classify the sentiment of the customer message below into exactly one of these three labels: "POSITIVE", "NEGATIVE", "NONE".'
 		. "\n\n" . 'Use "NONE" only if the message expresses no sentiment at all — i.e., it is purely factual or neutral. Output only the single label, no punctuation, no other text.',

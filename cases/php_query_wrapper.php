@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'     => 90,
 	'label'       => __( 'PHP Query Wrapper (Fenced Code)', 'promptbench' ),
 	'system'      => 'Constraints:'
 		. "\n" . '1. The function name must be `fetch_active_user_records`.'

@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'     => 20,
 	'label'       => __( 'Country Facts (JSON)', 'promptbench' ),
 	'system'      => 'Respond only with valid JSON. No markdown, no code fences, no commentary.',
 	'user'        => 'Return a JSON object with the capital of Nepal and a list of exactly 3 major cities whose names start with the letter "B" using this exact schema: {"capital": "", "cities": []}',

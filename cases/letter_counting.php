@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'        => 100,
 	'label'          => __( 'Letter Counting', 'promptbench' ),
 	'system'         => 'Count the number of times the specified letter appears in the specified word. Output only the digit answer. No other text, no punctuation, no explanation.',
 	'user'           => 'Count how many times the letter "r" appears in the word "strawberry".',

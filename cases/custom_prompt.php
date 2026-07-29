@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'     => 990,
 	'label'       => __( 'Custom Prompt', 'promptbench' ),
 	'system'      => '',
 	'user'        => '',

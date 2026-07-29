@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'     => 120,
 	'label'       => __( 'Exact Word Count', 'promptbench' ),
 	'system'      => 'Respond in exactly 10 words. Not 9, not 11 — exactly 10. Output a single plain-text sentence with no markdown and no trailing period counted as a separate word.',
 	'user'        => 'Describe what a WordPress plugin is.',

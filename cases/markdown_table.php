@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'     => 150,
 	'label'       => __( 'Markdown Table', 'promptbench' ),
 	'system'      => 'Output a markdown table with exactly 2 columns, headed "Country" and "Capital", and exactly 3 data rows.'
 		. "\n\n" . 'Include the header row and the separator row. Output nothing before or after the table — no intro, no commentary, no other markdown elements.',

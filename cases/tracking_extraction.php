@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'        => 30,
 	'label'          => __( 'Tracking Extraction (JSON)', 'promptbench' ),
 	'system'         => 'Extract the tracking number and delivery date from the email text provided below.'
 		. "\n\n" . 'Your response MUST be formatted strictly as a JSON object containing exactly two keys: "tracking_number" and "delivery_date".'

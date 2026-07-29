@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return [
+	'test_id'        => 110,
 	'label'          => __( 'Grounded Refusal', 'promptbench' ),
 	'system'         => 'Answer the question using ONLY the information in the "Context" below. Do not use outside knowledge. Do not guess or infer beyond what is stated.'
 		. "\n\n" . 'If the answer is not present in the Context, output exactly: "NOT_IN_CONTEXT". Output nothing else — no punctuation, no explanation.',

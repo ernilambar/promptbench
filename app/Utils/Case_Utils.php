@@ -29,9 +29,16 @@ class Case_Utils {
 		$cases = [];
 
 		foreach ( glob( PROMPTBENCH_DIR . 'cases/*.php' ) as $file ) {
-			$id           = preg_replace( '/^\d+-/', '', basename( $file, '.php' ) );
+			$id           = basename( $file, '.php' );
 			$cases[ $id ] = require $file;
 		}
+
+		uasort(
+			$cases,
+			static function ( $a, $b ) {
+				return $a['test_id'] <=> $b['test_id'];
+			}
+		);
 
 		return $cases;
 	}

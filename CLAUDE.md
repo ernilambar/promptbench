@@ -50,10 +50,13 @@ only class wired into WordPress hooks (`admin_menu`, `wp_ajax_promptbench_prompt
   temperature `0.0` for exact-match test cases (deterministic single-token/JSON output) and
   `0.2` otherwise, so exact-match runs aren't flaky due to sampling noise.
 - **`Utils\Case_Utils`** — loads test cases by `glob()`-ing `cases/*.php` and `require`-ing
-  each file, keying by filename with the leading `\d+-` sort prefix stripped. Each case file
-  returns an array with `label`, `system`, `user`, `expected`, `exact_match`.
-- **`cases/*.php`** — the numeric filename prefix (`1-`, `2-`, …) controls only display order,
-  not the case ID used elsewhere. Adding a new benchmark case is just adding a new file here.
+  each file, keying by filename (no extension). Sorts the result by each case's `test_id`.
+  Each case file returns an array with `test_id`, `label`, `system`, `user`, `expected`,
+  `exact_match`.
+- **`cases/*.php`** — the filename is just a slug (used as the case ID elsewhere); display
+  order and the identifier referenced in reports both come from the `test_id` field inside
+  the file, not the filename. Adding a new benchmark case is just adding a new file here with
+  a `test_id` that doesn't collide (leave gaps of 10 to slot cases in later).
 - **`src/main.js`** — built via `vite` (`pnpm build`) into `build/main.js`, which is what
   `Admin_Page` actually enqueues (not committed — `/build/` is gitignored). Populates the
   model `<select>` from `providerModels` when the provider changes, remembers the last-used
