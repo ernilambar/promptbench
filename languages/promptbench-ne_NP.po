@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-07-29T05:54:52+00:00\n"
+"PO-Revision-Date: 2026-07-29T05:57:29+00:00\n"
 "Language: ne_NP\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: promptbench\n"
@@ -59,7 +59,7 @@ msgstr "अनुरोध असफल भयो।"
 
 #: app/Admin/Admin_Page.php:95
 msgid "&mdash; Select &mdash;"
-msgstr "— छान्नुहोस् —"
+msgstr "&mdash; छान्नुहोस् &mdash;"
 
 #: app/Admin/Admin_Page.php:144
 msgid "No AI providers configured. Please configure a provider under Settings > Connectors."
