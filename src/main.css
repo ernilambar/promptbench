@@ -38,6 +38,17 @@
 	border-color: #2271b1;
 	color: #fff;
 }
+#promptbench-form .promptbench-pill.is-extra {
+	display: none;
+}
+#promptbench-testcase.is-expanded .promptbench-pill.is-extra {
+	display: inline-block;
+}
+#promptbench-form .promptbench-pill-expand {
+	background: transparent;
+	border-style: dashed;
+	color: #2271b1;
+}
 #promptbench-form textarea {
 	height: 150px;
 	margin-top: 4px;

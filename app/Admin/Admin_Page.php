@@ -125,11 +125,15 @@ class Admin_Page {
 	 * @since 1.0.0
 	 */
 	public function render_page(): void {
-		$page_data  = $this->get_page_data();
-		$providers  = $page_data['providers'];
-		$test_cases = $page_data['test_cases'];
-		$default_id = array_key_first( $test_cases );
-		$default    = $test_cases[ $default_id ];
+		$page_data   = $this->get_page_data();
+		$providers   = $page_data['providers'];
+		$test_cases  = $page_data['test_cases'];
+		$default_id  = array_key_first( $test_cases );
+		$default     = $test_cases[ $default_id ];
+		$visible_ids = array_slice( array_keys( $test_cases ), 0, 4 );
+		if ( isset( $test_cases['custom_prompt'] ) && ! in_array( 'custom_prompt', $visible_ids, true ) ) {
+			$visible_ids[] = 'custom_prompt';
+		}
 		?>
 		<div class="wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
@@ -156,8 +160,11 @@ class Admin_Page {
 						<label><?php esc_html_e( 'Test Case', 'promptbench' ); ?></label>
 						<div id="promptbench-testcase" class="promptbench-pills">
 							<?php foreach ( $test_cases as $id => $test_case ) : ?>
-								<button type="button" class="promptbench-pill<?php echo $id === $default_id ? ' is-active' : ''; ?>" data-testcase="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $test_case['label'] ); ?></button>
+								<button type="button" class="promptbench-pill<?php echo $id === $default_id ? ' is-active' : ''; ?><?php echo in_array( $id, $visible_ids, true ) ? '' : ' is-extra'; ?>" data-testcase="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $test_case['label'] ); ?></button>
 							<?php endforeach; ?>
+							<?php if ( count( $test_cases ) > count( $visible_ids ) ) : ?>
+								<button type="button" id="promptbench-testcase-expand" class="promptbench-pill promptbench-pill-expand"><?php esc_html_e( 'More…', 'promptbench' ); ?></button>
+							<?php endif; ?>
 						</div>
 					</p>
 					<p class="promptbench-row">

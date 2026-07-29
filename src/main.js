@@ -49,6 +49,14 @@ import './main.css';
 		} );
 	}
 
+	var expandBtn = document.getElementById( 'promptbench-testcase-expand' );
+	if ( expandBtn && testCasePills ) {
+		expandBtn.addEventListener( 'click', function () {
+			testCasePills.classList.add( 'is-expanded' );
+			expandBtn.style.display = 'none';
+		} );
+	}
+
 	function deepEqual( a, b ) {
 		if ( a === b ) return true;
 		if ( Array.isArray( a ) || Array.isArray( b ) ) {
