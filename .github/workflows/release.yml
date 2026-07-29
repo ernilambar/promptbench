@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Existing tag to (re)release'
-        required: true
+        description: 'Existing tag to (re)release (leave blank to use the tag selected above)'
+        required: false
 
 permissions:
   contents: write
