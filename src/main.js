@@ -1,34 +1,34 @@
 import './main.css';
 
 ( function () {
-	var btn = document.getElementById( 'promptbench-submit' );
-	var select = document.getElementById( 'promptbench-provider' );
-	var modelSelect = document.getElementById( 'promptbench-model' );
+	const btn = document.getElementById( 'promptbench-submit' );
+	const select = document.getElementById( 'promptbench-provider' );
+	const modelSelect = document.getElementById( 'promptbench-model' );
 	if ( ! btn ) return;
 
-	var providerModels = promptbenchData.providerModels;
-	var modelStorageKey = 'promptbench_model';
+	const providerModels = promptbenchData.providerModels;
+	const modelStorageKey = 'promptbench_model';
 
-	var testCases = promptbenchData.testCases;
-	var testCasePills = document.getElementById( 'promptbench-testcase' );
-	var systemPromptTextarea = document.getElementById( 'promptbench-system-prompt' );
-	var promptTextarea = document.getElementById( 'promptbench-prompt' );
-	var expectedEl = document.getElementById( 'promptbench-expected' );
-	var expectedWrap = document.getElementById( 'promptbench-expected-wrap' );
-	var outputEl = document.getElementById( 'promptbench-output' );
-	var metaEl = document.getElementById( 'promptbench-meta' );
-	var promptDebugEl = document.getElementById( 'promptbench-prompt-debug' );
+	const testCases = promptbenchData.testCases;
+	const testCasePills = document.getElementById( 'promptbench-testcase' );
+	const systemPromptTextarea = document.getElementById( 'promptbench-system-prompt' );
+	const promptTextarea = document.getElementById( 'promptbench-prompt' );
+	const expectedEl = document.getElementById( 'promptbench-expected' );
+	const expectedWrap = document.getElementById( 'promptbench-expected-wrap' );
+	const outputEl = document.getElementById( 'promptbench-output' );
+	const metaEl = document.getElementById( 'promptbench-meta' );
+	const promptDebugEl = document.getElementById( 'promptbench-prompt-debug' );
 
-	var activePill = testCasePills
+	const activePill = testCasePills
 		? testCasePills.querySelector( '.promptbench-pill.is-active' )
 		: null;
-	var currentTestCase = activePill ? testCases[ activePill.dataset.testcase ] : null;
+	let currentTestCase = activePill ? testCases[ activePill.dataset.testcase ] : null;
 
 	if ( testCasePills ) {
 		testCasePills.addEventListener( 'click', function ( e ) {
-			var pill = e.target.closest( '.promptbench-pill' );
+			const pill = e.target.closest( '.promptbench-pill' );
 			if ( ! pill ) return;
-			var testCase = testCases[ pill.dataset.testcase ];
+			const testCase = testCases[ pill.dataset.testcase ];
 			if ( ! testCase ) return;
 			testCasePills.querySelectorAll( '.promptbench-pill' ).forEach( function ( p ) {
 				p.classList.toggle( 'is-active', p === pill );
@@ -49,7 +49,7 @@ import './main.css';
 		} );
 	}
 
-	var expandBtn = document.getElementById( 'promptbench-testcase-expand' );
+	const expandBtn = document.getElementById( 'promptbench-testcase-expand' );
 	if ( expandBtn && testCasePills ) {
 		expandBtn.addEventListener( 'click', function () {
 			testCasePills.classList.add( 'is-expanded' );
@@ -67,7 +67,7 @@ import './main.css';
 			} );
 		}
 		if ( a && b && typeof a === 'object' && typeof b === 'object' ) {
-			var aKeys = Object.keys( a ),
+			const aKeys = Object.keys( a ),
 				bKeys = Object.keys( b );
 			if ( aKeys.length !== bKeys.length ) return false;
 			return aKeys.every( function ( k ) {
@@ -78,8 +78,8 @@ import './main.css';
 	}
 
 	function valuesMatch( output, expected ) {
-		var o = ( output || '' ).trim();
-		var e = ( expected || '' ).trim();
+		const o = ( output || '' ).trim();
+		const e = ( expected || '' ).trim();
 		try {
 			return deepEqual( JSON.parse( o ), JSON.parse( e ) );
 		} catch ( err ) {
@@ -88,29 +88,29 @@ import './main.css';
 	}
 
 	function populateModels( providerId ) {
-		var info = providerModels[ providerId ] || {};
-		var models = info.models || [];
+		const info = providerModels[ providerId ] || {};
+		const models = info.models || [];
 		modelSelect.innerHTML = '';
-		var placeholder = document.createElement( 'option' );
+		const placeholder = document.createElement( 'option' );
 		placeholder.value = '';
 		placeholder.text = '- Select -';
 		modelSelect.appendChild( placeholder );
 		models.forEach( function ( m ) {
-			var opt = document.createElement( 'option' );
+			const opt = document.createElement( 'option' );
 			opt.value = m.id;
 			opt.text = m.name !== m.id ? m.name + ' (' + m.id + ')' : m.id;
 			modelSelect.appendChild( opt );
 		} );
 	}
 
-	var storageKey = 'promptbench_provider';
-	var saved = localStorage.getItem( storageKey );
+	const storageKey = 'promptbench_provider';
+	const saved = localStorage.getItem( storageKey );
 	if ( saved && select.querySelector( 'option[value="' + saved + '"]' ) ) {
 		select.value = saved;
 	}
 	populateModels( select.value );
 
-	var savedModel = localStorage.getItem( modelStorageKey );
+	const savedModel = localStorage.getItem( modelStorageKey );
 	if ( savedModel && modelSelect.querySelector( 'option[value="' + savedModel + '"]' ) ) {
 		modelSelect.value = savedModel;
 	}
@@ -127,21 +127,21 @@ import './main.css';
 
 	function buildMetaLines( meta ) {
 		if ( ! meta ) return [];
-		var lines = [];
+		const lines = [];
 
 		if ( meta.provider ) {
-			var p = meta.provider;
-			var name = p.name || p.id || '';
-			var type = p.type || '';
+			const p = meta.provider;
+			const name = p.name || p.id || '';
+			const type = p.type || '';
 			lines.push(
 				'Provider: ' + ( name && type ? name + ' · ' + type : name || p.id || '' )
 			);
 		}
 
 		if ( meta.model ) {
-			var m = meta.model;
-			var mId = m.id || '';
-			var mName = m.name || '';
+			const m = meta.model;
+			const mId = m.id || '';
+			const mName = m.name || '';
 			if ( mName && mId && mName !== mId ) {
 				lines.push( 'Model: ' + mName + ' (' + mId + ')' );
 			} else {
@@ -150,7 +150,7 @@ import './main.css';
 		}
 
 		if ( meta.token_usage ) {
-			var t = meta.token_usage,
+			const t = meta.token_usage,
 				parts = [];
 			if ( t.promptTokens != null ) parts.push( 'Prompt: ' + t.promptTokens );
 			if ( t.completionTokens != null ) parts.push( 'Completion: ' + t.completionTokens );
@@ -163,13 +163,13 @@ import './main.css';
 	}
 
 	btn.addEventListener( 'click', function () {
-		var provider = document.getElementById( 'promptbench-provider' ).value;
-		var system = document.getElementById( 'promptbench-system-prompt' ).value.trim();
-		var prompt = document.getElementById( 'promptbench-prompt' ).value.trim();
-		var output = document.getElementById( 'promptbench-output' );
-		var metaEl = document.getElementById( 'promptbench-meta' );
-		var promptDebug = document.getElementById( 'promptbench-prompt-debug' );
-		var spinner = document.getElementById( 'promptbench-spinner' );
+		const provider = document.getElementById( 'promptbench-provider' ).value;
+		const system = document.getElementById( 'promptbench-system-prompt' ).value.trim();
+		const prompt = document.getElementById( 'promptbench-prompt' ).value.trim();
+		const output = document.getElementById( 'promptbench-output' );
+		const metaEl = document.getElementById( 'promptbench-meta' );
+		const promptDebug = document.getElementById( 'promptbench-prompt-debug' );
+		const spinner = document.getElementById( 'promptbench-spinner' );
 
 		if ( ! prompt ) return;
 
@@ -182,7 +182,7 @@ import './main.css';
 		metaEl.innerHTML = '';
 		promptDebug.style.display = 'none';
 
-		var body = new FormData();
+		const body = new FormData();
 		body.append( 'action', 'promptbench_prompt' );
 		body.append( 'nonce', promptbenchData.nonce );
 		body.append( 'provider', provider );
@@ -207,10 +207,10 @@ import './main.css';
 								: 'is-mismatch'
 						);
 					}
-					var lines = buildMetaLines( res.data.meta );
+					const lines = buildMetaLines( res.data.meta );
 					if ( lines.length ) {
 						lines.forEach( function ( line ) {
-							var div = document.createElement( 'div' );
+							const div = document.createElement( 'div' );
 							div.textContent = line;
 							metaEl.appendChild( div );
 						} );
