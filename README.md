@@ -1,6 +1,6 @@
 # Promptbench
 
-WP-Admin tool for testing prompts against configured AI providers.
+Test AI prompts from the WordPress admin.
 
 Requires an AI provider configured via the WordPress AI Client.
 
@@ -38,6 +38,19 @@ composer format      # auto-fix
 4. Open a pull request against `main` with a clear description of what and why.
 
 Bug reports are welcome via [GitHub Issues](https://github.com/ernilambar/promptbench/issues).
+
+## Releasing
+
+1. Update `readme.txt`'s `== Changelog ==` section.
+2. Bump `version` in `package.json`, then run `pnpm run version`.
+3. Commit the version bump, then tag and push (matching the bumped version, e.g. `v1.0.1`):
+
+```bash
+git tag v1.0.1
+git push origin v1.0.1
+```
+
+Pushing the tag triggers `.github/workflows/release.yml`, which builds the plugin and attaches the zip to a GitHub release.
 
 ## License
 
