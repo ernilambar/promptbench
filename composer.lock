@@ -4,8 +4,106 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c4f348c00a028887736a3f11a4db59c8",
-    "packages": [],
+    "content-hash": "c6927978e72bb858b0d3388beb84253b",
+    "packages": [
+        {
+            "name": "ernilambar/gitvise",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ernilambar/gitvise.git",
+                "reference": "681cd936a97d562bbfc656340c38c9997536f37d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ernilambar/gitvise/zipball/681cd936a97d562bbfc656340c38c9997536f37d",
+                "reference": "681cd936a97d562bbfc656340c38c9997536f37d",
+                "shasum": ""
+            },
+            "require": {
+                "erusev/parsedown": "^1.8",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "ernilambar/coding-standard": "^2.0",
+                "phpunit/phpunit": "^9.0 || ^10.0",
+                "squizlabs/php_codesniffer": "^3.0",
+                "wp-coding-standards/wpcs": "^3.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nilambar\\Gitvise\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Update WordPress plugins from GitHub releases.",
+            "support": {
+                "issues": "https://github.com/ernilambar/gitvise/issues",
+                "source": "https://github.com/ernilambar/gitvise/tree/1.0.2"
+            },
+            "time": "2026-08-06T17:13:14+00:00"
+        },
+        {
+            "name": "erusev/parsedown",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/erusev/parsedown.git",
+                "reference": "96baaad00f71ba04d76e45b4620f54d3beabd6f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/96baaad00f71ba04d76e45b4620f54d3beabd6f7",
+                "reference": "96baaad00f71ba04d76e45b4620f54d3beabd6f7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5|^8.5|^9.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Parsedown": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emanuil Rusev",
+                    "email": "hello@erusev.com",
+                    "homepage": "http://erusev.com"
+                }
+            ],
+            "description": "Parser for Markdown.",
+            "homepage": "http://parsedown.org",
+            "keywords": [
+                "markdown",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/erusev/parsedown/issues",
+                "source": "https://github.com/erusev/parsedown/tree/1.8.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/erusev",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-02-16T11:41:01+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
@@ -911,16 +1009,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.13.5",
+            "version": "3.13.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "0ca86845ce43291e8f5692c7356fccf3bcf02bf4"
+                "reference": "4c378e1a528ea066890fc2397cbdd2f94eb2fc91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/0ca86845ce43291e8f5692c7356fccf3bcf02bf4",
-                "reference": "0ca86845ce43291e8f5692c7356fccf3bcf02bf4",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/4c378e1a528ea066890fc2397cbdd2f94eb2fc91",
+                "reference": "4c378e1a528ea066890fc2397cbdd2f94eb2fc91",
                 "shasum": ""
             },
             "require": {
@@ -986,30 +1084,30 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2025-11-04T16:30:35+00:00"
+            "time": "2026-08-06T00:17:32+00:00"
         },
         {
             "name": "wp-cli/i18n-command",
-            "version": "v2.7.3",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/i18n-command.git",
-                "reference": "a42366245fef8b11a5d895db3f38d3c606d21d06"
+                "reference": "170a75093c0f780b5c6590f79e5cf06cb8962eb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/i18n-command/zipball/a42366245fef8b11a5d895db3f38d3c606d21d06",
-                "reference": "a42366245fef8b11a5d895db3f38d3c606d21d06",
+                "url": "https://api.github.com/repos/wp-cli/i18n-command/zipball/170a75093c0f780b5c6590f79e5cf06cb8962eb7",
+                "reference": "170a75093c0f780b5c6590f79e5cf06cb8962eb7",
                 "shasum": ""
             },
             "require": {
                 "eftec/bladeone": "3.52",
                 "gettext/gettext": "^4.8",
                 "mck89/peast": "^1.13.11",
-                "wp-cli/wp-cli": "^2.13"
+                "wp-cli/wp-cli": "^3.0"
             },
             "require-dev": {
-                "wp-cli/scaffold-command": "^1.2 || ^2",
+                "wp-cli/scaffold-command": "^1.2 || ^2 || ^3",
                 "wp-cli/wp-cli-tests": "^5.0.0"
             },
             "suggest": {
@@ -1054,9 +1152,9 @@
             "homepage": "https://github.com/wp-cli/i18n-command",
             "support": {
                 "issues": "https://github.com/wp-cli/i18n-command/issues",
-                "source": "https://github.com/wp-cli/i18n-command/tree/v2.7.3"
+                "source": "https://github.com/wp-cli/i18n-command/tree/v3.0.0"
             },
-            "time": "2026-04-28T13:55:33+00:00"
+            "time": "2026-08-04T12:46:11+00:00"
         },
         {
             "name": "wp-cli/mustangostang-spyc",
@@ -1178,12 +1276,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/wp-cli.git",
-                "reference": "4a1a4d0cb4fab2c6feafc0780a2241b1c33d92e2"
+                "reference": "05fd7f2b1f9a7731423d27b7ad7de499c6c5ee56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/4a1a4d0cb4fab2c6feafc0780a2241b1c33d92e2",
-                "reference": "4a1a4d0cb4fab2c6feafc0780a2241b1c33d92e2",
+                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/05fd7f2b1f9a7731423d27b7ad7de499c6c5ee56",
+                "reference": "05fd7f2b1f9a7731423d27b7ad7de499c6c5ee56",
                 "shasum": ""
             },
             "require": {
@@ -1195,11 +1293,11 @@
             "require-dev": {
                 "justinrainbow/json-schema": "^6.3",
                 "roave/security-advisories": "dev-latest",
-                "wp-cli/db-command": "^2",
-                "wp-cli/entity-command": "^2",
-                "wp-cli/extension-command": "^2",
-                "wp-cli/language-command": "^2",
-                "wp-cli/package-command": "^2",
+                "wp-cli/db-command": "^2 || ^3",
+                "wp-cli/entity-command": "^2 || ^3",
+                "wp-cli/extension-command": "^2 || ^3",
+                "wp-cli/language-command": "^2 || ^3",
+                "wp-cli/package-command": "^2 || ^3",
                 "wp-cli/wp-cli-tests": "^5"
             },
             "suggest": {
@@ -1228,7 +1326,7 @@
                     "cli version"
                 ],
                 "branch-alias": {
-                    "dev-main": "2.13.x-dev"
+                    "dev-main": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -1255,7 +1353,7 @@
                 "issues": "https://github.com/wp-cli/wp-cli/issues",
                 "source": "https://github.com/wp-cli/wp-cli"
             },
-            "time": "2026-07-27T15:29:15+00:00"
+            "time": "2026-08-06T10:31:05+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
