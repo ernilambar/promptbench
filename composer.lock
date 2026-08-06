@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "ernilambar/gitvise",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ernilambar/gitvise.git",
-                "reference": "681cd936a97d562bbfc656340c38c9997536f37d"
+                "reference": "c3cfc3469273192e24bed41879683a73a98a2c4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ernilambar/gitvise/zipball/681cd936a97d562bbfc656340c38c9997536f37d",
-                "reference": "681cd936a97d562bbfc656340c38c9997536f37d",
+                "url": "https://api.github.com/repos/ernilambar/gitvise/zipball/c3cfc3469273192e24bed41879683a73a98a2c4b",
+                "reference": "c3cfc3469273192e24bed41879683a73a98a2c4b",
                 "shasum": ""
             },
             "require": {
@@ -43,9 +43,9 @@
             "description": "Update WordPress plugins from GitHub releases.",
             "support": {
                 "issues": "https://github.com/ernilambar/gitvise/issues",
-                "source": "https://github.com/ernilambar/gitvise/tree/1.0.2"
+                "source": "https://github.com/ernilambar/gitvise/tree/1.0.3"
             },
-            "time": "2026-08-06T17:13:14+00:00"
+            "time": "2026-08-06T17:35:49+00:00"
         },
         {
             "name": "erusev/parsedown",
