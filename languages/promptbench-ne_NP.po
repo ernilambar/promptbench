@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-08-06T17:23:25+00:00\n"
+"PO-Revision-Date: 2026-08-07T04:32:02+00:00\n"
 "Language: ne_NP\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: promptbench\n"
@@ -97,23 +97,27 @@ msgstr "अपेक्षित आउटपुट"
 msgid "Submit"
 msgstr "पेस गर्नुहोस्"
 
-#: app/Admin/Admin_Page.php:220
+#: app/Admin/Admin_Page.php:186
+msgid "Bulk Test"
+msgstr "एकमुस्ट परीक्षण"
+
+#: app/Admin/Admin_Page.php:223
 msgid "Unauthorized."
 msgstr "अनधिकृत।"
 
-#: app/Admin/Admin_Page.php:224
+#: app/Admin/Admin_Page.php:227
 msgid "WordPress AI client not available."
 msgstr "वर्डप्रेस एआई क्लाइन्ट उपलब्ध छैन।"
 
-#: app/Admin/Admin_Page.php:234
+#: app/Admin/Admin_Page.php:237
 msgid "Prompt is required."
 msgstr "प्रम्प्ट आवश्यक छ।"
 
-#: app/Admin/Admin_Page.php:240
+#: app/Admin/Admin_Page.php:243
 msgid "No AI provider is configured."
 msgstr "कुनै एआई प्रोभाइडर कन्फिगर गरिएको छैन।"
 
-#: app/Admin/Admin_Page.php:250
+#: app/Admin/Admin_Page.php:253
 msgid "Unexpected response from AI provider."
 msgstr "एआई प्रोभाइडरबाट अनपेक्षित प्रतिक्रिया आयो।"
 

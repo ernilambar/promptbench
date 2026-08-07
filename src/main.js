@@ -32,6 +32,24 @@ import './main.css';
 	const outputEl = document.getElementById( 'promptbench-output' );
 	const metaEl = document.getElementById( 'promptbench-meta' );
 	const promptDebugEl = document.getElementById( 'promptbench-prompt-debug' );
+	const runAllBtn = document.getElementById( 'promptbench-run-all' );
+	const runAllResultsEl = document.getElementById( 'promptbench-runall-results' );
+	const runAllProgressEl = document.getElementById( 'promptbench-runall-progress' );
+
+	function resetOutputPanels() {
+		outputEl.style.display = 'none';
+		outputEl.className = '';
+		metaEl.className = 'is-empty';
+		metaEl.innerHTML = '';
+		promptDebugEl.style.display = 'none';
+		if ( runAllResultsEl ) {
+			runAllResultsEl.style.display = 'none';
+			runAllResultsEl.innerHTML = '';
+		}
+		if ( runAllProgressEl ) {
+			runAllProgressEl.textContent = '';
+		}
+	}
 
 	const activePill = testCasePills
 		? testCasePills.querySelector( '.promptbench-pill.is-active' )
@@ -55,11 +73,7 @@ import './main.css';
 			}
 			currentTestCase = testCase;
 
-			outputEl.style.display = 'none';
-			outputEl.className = '';
-			metaEl.className = 'is-empty';
-			metaEl.innerHTML = '';
-			promptDebugEl.style.display = 'none';
+			resetOutputPanels();
 		} );
 	}
 
@@ -189,11 +203,7 @@ import './main.css';
 		btn.disabled = true;
 		spinner.style.display = 'inline-block';
 		spinner.classList.add( 'is-active' );
-		output.style.display = 'none';
-		output.className = '';
-		metaEl.className = 'is-empty';
-		metaEl.innerHTML = '';
-		promptDebug.style.display = 'none';
+		resetOutputPanels();
 
 		const body = new FormData();
 		body.append( 'action', 'promptbench_prompt' );
@@ -256,4 +266,180 @@ import './main.css';
 				spinner.classList.remove( 'is-active' );
 			} );
 	} );
+
+	function runSingleTest( id, testCase, provider, model ) {
+		const expected = testCase.exact_match ? testCase.expected_value : testCase.expected;
+		const body = new FormData();
+		body.append( 'action', 'promptbench_prompt' );
+		body.append( 'nonce', promptbenchData.nonce );
+		body.append( 'provider', provider );
+		body.append( 'model', model );
+		body.append( 'system', testCase.system || '' );
+		body.append( 'prompt', testCase.user || '' );
+		body.append( 'exact_match', testCase.exact_match ? '1' : '' );
+
+		return fetch( promptbenchData.ajaxUrl, { method: 'POST', body: body } )
+			.then( function ( r ) {
+				return r.json();
+			} )
+			.then( function ( res ) {
+				if ( ! res.success ) {
+					return {
+						id: id,
+						label: testCase.label,
+						status: 'error',
+						output: res.data || promptbenchData.errorGeneric,
+						expected: expected,
+					};
+				}
+				if ( testCase.exact_match ) {
+					return {
+						id: id,
+						label: testCase.label,
+						status: valuesMatch( res.data.output, testCase.expected_value )
+							? 'pass'
+							: 'fail',
+						output: res.data.output,
+						expected: expected,
+					};
+				}
+				return {
+					id: id,
+					label: testCase.label,
+					status: 'done',
+					output: res.data.output,
+					expected: expected,
+				};
+			} )
+			.catch( function () {
+				return {
+					id: id,
+					label: testCase.label,
+					status: 'error',
+					output: promptbenchData.requestFailed,
+					expected: expected,
+				};
+			} );
+	}
+
+	function buildRunAllColumn( colLabel, value ) {
+		const col = document.createElement( 'div' );
+		col.className = 'promptbench-runall-col';
+
+		const label = document.createElement( 'div' );
+		label.className = 'promptbench-runall-col-label';
+		label.textContent = colLabel;
+
+		const val = document.createElement( 'div' );
+		val.className = 'promptbench-runall-col-value';
+		val.textContent = value;
+
+		col.appendChild( label );
+		col.appendChild( val );
+
+		return col;
+	}
+
+	function renderRunAllResults( results ) {
+		runAllResultsEl.innerHTML = '';
+
+		const scored = results.filter( function ( r ) {
+			return r.status === 'pass' || r.status === 'fail';
+		} );
+		const passed = scored.filter( function ( r ) {
+			return r.status === 'pass';
+		} ).length;
+		const errors = results.filter( function ( r ) {
+			return r.status === 'error';
+		} ).length;
+
+		const badgeLabels = { pass: 'Pass', fail: 'Fail', error: 'Error', done: 'Done' };
+
+		const summary = document.createElement( 'div' );
+		summary.className = 'promptbench-runall-summary';
+		summary.textContent =
+			passed +
+			'/' +
+			scored.length +
+			' exact-match passed · ' +
+			results.length +
+			' total · ' +
+			errors +
+			' errors';
+		runAllResultsEl.appendChild( summary );
+
+		results.forEach( function ( r ) {
+			const row = document.createElement( 'div' );
+			row.className = 'promptbench-runall-row is-' + r.status;
+
+			const label = document.createElement( 'div' );
+			label.className = 'promptbench-runall-label';
+
+			const labelText = document.createElement( 'span' );
+			labelText.textContent = r.label;
+			label.appendChild( labelText );
+
+			const badge = document.createElement( 'span' );
+			badge.className = 'promptbench-runall-badge';
+			badge.textContent = badgeLabels[ r.status ] || r.status;
+			label.appendChild( badge );
+
+			const columns = document.createElement( 'div' );
+			columns.className = 'promptbench-runall-columns';
+			columns.appendChild( buildRunAllColumn( 'Output', r.output ) );
+			columns.appendChild( buildRunAllColumn( 'Expected', r.expected || '—' ) );
+
+			row.appendChild( label );
+			row.appendChild( columns );
+			runAllResultsEl.appendChild( row );
+		} );
+
+		runAllResultsEl.style.display = 'block';
+	}
+
+	if ( runAllBtn ) {
+		runAllBtn.addEventListener( 'click', async function () {
+			const provider = select.value;
+			const model = modelSelect.value;
+			const spinner = document.getElementById( 'promptbench-spinner' );
+
+			resetOutputPanels();
+
+			btn.disabled = true;
+			runAllBtn.disabled = true;
+			spinner.style.display = 'inline-block';
+			spinner.classList.add( 'is-active' );
+
+			const entries = Object.entries( testCases ).filter( function ( entry ) {
+				return entry[ 1 ].user && entry[ 1 ].user.trim() !== '';
+			} );
+
+			const results = [];
+
+			try {
+				for ( let i = 0; i < entries.length; i++ ) {
+					const [ id, testCase ] = entries[ i ];
+					if ( runAllProgressEl ) {
+						runAllProgressEl.textContent =
+							'Running ' +
+							( i + 1 ) +
+							' of ' +
+							entries.length +
+							' — ' +
+							testCase.label;
+					}
+					results.push( await runSingleTest( id, testCase, provider, model ) );
+				}
+				renderRunAllResults( results );
+			} finally {
+				btn.disabled = false;
+				runAllBtn.disabled = false;
+				spinner.style.display = '';
+				spinner.classList.remove( 'is-active' );
+				if ( runAllProgressEl ) {
+					runAllProgressEl.textContent = '';
+				}
+			}
+		} );
+	}
 } )();

@@ -183,7 +183,9 @@ class Admin_Page {
 						<div id="promptbench-expected"><?php echo esc_html( $default['expected'] ); ?></div>
 					</div>
 					<button id="promptbench-submit" class="button button-primary"><?php esc_html_e( 'Submit', 'promptbench' ); ?></button>
+					<button id="promptbench-run-all" class="button"><?php esc_html_e( 'Bulk Test', 'promptbench' ); ?></button>
 					<span id="promptbench-spinner" class="spinner"></span>
+					<span id="promptbench-runall-progress" class="promptbench-runall-progress"></span>
 				<?php endif; ?>
 			</div>
 
@@ -204,6 +206,7 @@ class Admin_Page {
 					<div class="apd-value"></div>
 				</div>
 			</div>
+			<div id="promptbench-runall-results" style="display:none;"></div>
 		</div>
 		<?php
 	}

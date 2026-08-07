@@ -98,23 +98,27 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: app/Admin/Admin_Page.php:220
+#: app/Admin/Admin_Page.php:186
+msgid "Bulk Test"
+msgstr ""
+
+#: app/Admin/Admin_Page.php:223
 msgid "Unauthorized."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:224
+#: app/Admin/Admin_Page.php:227
 msgid "WordPress AI client not available."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:234
+#: app/Admin/Admin_Page.php:237
 msgid "Prompt is required."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:240
+#: app/Admin/Admin_Page.php:243
 msgid "No AI provider is configured."
 msgstr ""
 
-#: app/Admin/Admin_Page.php:250
+#: app/Admin/Admin_Page.php:253
 msgid "Unexpected response from AI provider."
 msgstr ""
 
