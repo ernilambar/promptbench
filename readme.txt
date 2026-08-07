@@ -4,7 +4,7 @@ Contributors: nilambar
 Tags: ai, prompt, ai client, connector, debug
 Requires at least: 7.0
 Tested up to: 7.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 8.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -61,7 +61,10 @@ Yes, via the `promptbench_test_cases` filter.
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.1 - 2026-08-07 =
+* Added: bulk run button to run all tests at once
+
+= 1.0.0 - 2026-08-067 =
 * Initial release
 
 == Upgrade Notice ==
