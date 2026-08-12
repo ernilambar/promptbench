@@ -12,6 +12,7 @@ Thumbs.db
 .vscode/*
 *.sublime-project
 *.sublime-workspace
+bin/strauss.phar
 
 # Environment files
 .env
@@ -41,3 +42,4 @@ Thumbs.db
 /deploy/
 /node_modules/
 /vendor/
+/vendor-prefixed/

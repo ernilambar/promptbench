@@ -19,10 +19,10 @@
 	"main": "promptbench.php",
 	"scripts": {
 		"build": "vite build",
-		"predeploy": "rimraf build deploy vendor && pnpm run build && pnpm run vendor",
+		"predeploy": "rimraf build deploy vendor vendor-prefixed && pnpm run build && pnpm run vendor",
 		"deploy": "packtor",
 		"format": "prettier \"**/*.{cjs,css,js,jsx,json,mjs}\" --write --log-level warn",
-		"vendor": "composer install --no-dev --no-scripts -o",
+		"vendor": "composer install --no-dev -o",
 		"version": "easy-replace-in-files"
 	},
 	"browserslist": "> 2%, last 2 versions, not dead",
