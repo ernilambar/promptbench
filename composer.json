@@ -34,7 +34,28 @@
     },
     "sort-packages": true
   },
+  "extra": {
+    "strauss": {
+      "delete_vendor_packages": true,
+      "namespace_prefix": "Nilambar\\Promptbench\\Vendor\\",
+      "target_directory": "vendor-prefixed",
+      "update_call_sites": [
+        "app",
+        "promptbench.php"
+      ]
+    }
+  },
   "scripts": {
+    "post-install-cmd": [
+      "@prefix-namespaces"
+    ],
+    "post-update-cmd": [
+      "@prefix-namespaces"
+    ],
+    "post-autoload-dump": [
+      "sh -c 'test -f ./bin/strauss.phar || curl -o bin/strauss.phar -L -C - https://github.com/BrianHenryIE/strauss/releases/latest/download/strauss.phar'",
+      "@php bin/strauss.phar include-autoloader"
+    ],
     "format": "@php ./vendor/bin/phpcbf --report-full --report-summary",
     "lint": [
       "@lint-php",
@@ -44,6 +65,11 @@
     "mo": "./vendor/bin/wp i18n make-mo languages/",
     "phpcs": "@php ./vendor/bin/phpcs --report-full --report-summary",
     "po": "./vendor/bin/wp i18n update-po languages/promptbench.pot languages/",
-    "pot": "./vendor/bin/wp i18n make-pot . --exclude=build,deploy,node_modules,vendor --headers='{\"POT-Creation-Date\":\"\"}'"
+    "pot": "./vendor/bin/wp i18n make-pot . --exclude=build,deploy,node_modules,vendor --headers='{\"POT-Creation-Date\":\"\"}'",
+    "prefix-namespaces": [
+      "sh -c 'test -f ./bin/strauss.phar || curl -o bin/strauss.phar -L -C - https://github.com/BrianHenryIE/strauss/releases/latest/download/strauss.phar'",
+      "@php bin/strauss.phar",
+      "@composer dump-autoload"
+    ]
   }
 }

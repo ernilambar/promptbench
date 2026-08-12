@@ -16,8 +16,8 @@
  * @package Nilambar\Promptbench
  */
 
-use Nilambar\Gitvise\Updater;
 use Nilambar\Promptbench\Core\Bootstrap;
+use Nilambar\Promptbench\Vendor\Nilambar\Gitvise\Updater;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -31,7 +31,6 @@ define( 'PROMPTBENCH_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PROMPTBENCH_URL', plugin_dir_url( __FILE__ ) );
 
 require_once PROMPTBENCH_DIR . 'vendor/autoload.php';
-require_once PROMPTBENCH_DIR . 'vendor/ernilambar/gitvise/init.php';
 
 ( new Bootstrap() )->init();
 

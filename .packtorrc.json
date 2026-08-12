@@ -5,6 +5,7 @@
 		"cases/**/*",
 		"languages/**/*",
 		"vendor/**/*",
+		"vendor-prefixed/**/*",
 		"composer.json",
 		"promptbench.php",
 		"readme.txt",

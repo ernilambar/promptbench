@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6927978e72bb858b0d3388beb84253b",
+    "content-hash": "44ece92c9a06e4a21f340ee77d36fd27",
     "packages": [
         {
             "name": "ernilambar/gitvise",
-            "version": "1.0.3",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ernilambar/gitvise.git",
-                "reference": "c3cfc3469273192e24bed41879683a73a98a2c4b"
+                "reference": "378ad9d96a4bb1624727bfac1ae8325a9c1cf85c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ernilambar/gitvise/zipball/c3cfc3469273192e24bed41879683a73a98a2c4b",
-                "reference": "c3cfc3469273192e24bed41879683a73a98a2c4b",
+                "url": "https://api.github.com/repos/ernilambar/gitvise/zipball/378ad9d96a4bb1624727bfac1ae8325a9c1cf85c",
+                "reference": "378ad9d96a4bb1624727bfac1ae8325a9c1cf85c",
                 "shasum": ""
             },
             "require": {
@@ -43,9 +43,9 @@
             "description": "Update WordPress plugins from GitHub releases.",
             "support": {
                 "issues": "https://github.com/ernilambar/gitvise/issues",
-                "source": "https://github.com/ernilambar/gitvise/tree/1.0.3"
+                "source": "https://github.com/ernilambar/gitvise/tree/1.0.6"
             },
-            "time": "2026-08-06T17:35:49+00:00"
+            "time": "2026-08-10T05:06:32+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -1276,12 +1276,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/wp-cli.git",
-                "reference": "05fd7f2b1f9a7731423d27b7ad7de499c6c5ee56"
+                "reference": "0413accbf08087b3d10111d671756c1d39a4c7bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/05fd7f2b1f9a7731423d27b7ad7de499c6c5ee56",
-                "reference": "05fd7f2b1f9a7731423d27b7ad7de499c6c5ee56",
+                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/0413accbf08087b3d10111d671756c1d39a4c7bb",
+                "reference": "0413accbf08087b3d10111d671756c1d39a4c7bb",
                 "shasum": ""
             },
             "require": {
@@ -1353,7 +1353,7 @@
                 "issues": "https://github.com/wp-cli/wp-cli/issues",
                 "source": "https://github.com/wp-cli/wp-cli"
             },
-            "time": "2026-08-06T10:31:05+00:00"
+            "time": "2026-08-12T08:26:31+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
