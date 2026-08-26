@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Promptbench 1.0.0\n"
+"Project-Id-Version: Promptbench 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/promptbench\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,6 +124,10 @@ msgstr ""
 
 #: cases/ambiguous_item.php:14
 msgid "Ambiguous Item (JSON)"
+msgstr ""
+
+#: cases/country_capital.php:14
+msgid "Country Capitals (JSON)"
 msgstr ""
 
 #: cases/country_facts.php:14

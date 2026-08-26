@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-08-07T04:32:02+00:00\n"
+"PO-Revision-Date: 2026-08-26T04:40:46+00:00\n"
 "Language: ne_NP\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: promptbench\n"
@@ -124,6 +124,10 @@ msgstr "एआई प्रोभाइडरबाट अनपेक्षि�
 #: cases/ambiguous_item.php:14
 msgid "Ambiguous Item (JSON)"
 msgstr "अस्पष्ट आइटम (JSON)"
+
+#: cases/country_capital.php:14
+msgid "Country Capitals (JSON)"
+msgstr "देशहरूको राजधानी (JSON)"
 
 #: cases/country_facts.php:14
 msgid "Country Facts"
