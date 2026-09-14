@@ -7,7 +7,6 @@
 build
 bun.lock
 bun.lockb
-composer.json
 deploy
 dist
 node_modules
