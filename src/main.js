@@ -25,7 +25,9 @@ import './main.css';
 
 	const testCases = promptbenchData.testCases;
 	const testCasePills = document.getElementById( 'promptbench-testcase' );
-	const systemPromptTextarea = document.getElementById( 'promptbench-system-prompt' );
+	const systemPromptTextarea = document.getElementById(
+		'promptbench-system-prompt'
+	);
 	const promptTextarea = document.getElementById( 'promptbench-prompt' );
 	const expectedEl = document.getElementById( 'promptbench-expected' );
 	const expectedWrap = document.getElementById( 'promptbench-expected-wrap' );
@@ -33,8 +35,12 @@ import './main.css';
 	const metaEl = document.getElementById( 'promptbench-meta' );
 	const promptDebugEl = document.getElementById( 'promptbench-prompt-debug' );
 	const runAllBtn = document.getElementById( 'promptbench-run-all' );
-	const runAllResultsEl = document.getElementById( 'promptbench-runall-results' );
-	const runAllProgressEl = document.getElementById( 'promptbench-runall-progress' );
+	const runAllResultsEl = document.getElementById(
+		'promptbench-runall-results'
+	);
+	const runAllProgressEl = document.getElementById(
+		'promptbench-runall-progress'
+	);
 
 	function resetOutputPanels() {
 		outputEl.style.display = 'none';
@@ -54,7 +60,9 @@ import './main.css';
 	const activePill = testCasePills
 		? testCasePills.querySelector( '.promptbench-pill.is-active' )
 		: null;
-	let currentTestCase = activePill ? testCases[ activePill.dataset.testcase ] : null;
+	let currentTestCase = activePill
+		? testCases[ activePill.dataset.testcase ]
+		: null;
 
 	if ( testCasePills ) {
 		testCasePills.addEventListener( 'click', function ( e ) {
@@ -62,9 +70,11 @@ import './main.css';
 			if ( ! pill ) return;
 			const testCase = testCases[ pill.dataset.testcase ];
 			if ( ! testCase ) return;
-			testCasePills.querySelectorAll( '.promptbench-pill' ).forEach( function ( p ) {
-				p.classList.toggle( 'is-active', p === pill );
-			} );
+			testCasePills
+				.querySelectorAll( '.promptbench-pill' )
+				.forEach( function ( p ) {
+					p.classList.toggle( 'is-active', p === pill );
+				} );
 			systemPromptTextarea.value = testCase.system;
 			promptTextarea.value = testCase.user;
 			expectedEl.textContent = testCase.expected;
@@ -88,7 +98,11 @@ import './main.css';
 	function deepEqual( a, b ) {
 		if ( a === b ) return true;
 		if ( Array.isArray( a ) || Array.isArray( b ) ) {
-			if ( ! Array.isArray( a ) || ! Array.isArray( b ) || a.length !== b.length )
+			if (
+				! Array.isArray( a ) ||
+				! Array.isArray( b ) ||
+				a.length !== b.length
+			)
 				return false;
 			return a.every( function ( v, i ) {
 				return deepEqual( v, b[ i ] );
@@ -99,7 +113,10 @@ import './main.css';
 				bKeys = Object.keys( b );
 			if ( aKeys.length !== bKeys.length ) return false;
 			return aKeys.every( function ( k ) {
-				return Object.prototype.hasOwnProperty.call( b, k ) && deepEqual( a[ k ], b[ k ] );
+				return (
+					Object.prototype.hasOwnProperty.call( b, k ) &&
+					deepEqual( a[ k ], b[ k ] )
+				);
 			} );
 		}
 		return false;
@@ -131,7 +148,10 @@ import './main.css';
 		} );
 
 		const savedModel = getSavedModels()[ providerId ];
-		if ( savedModel && modelSelect.querySelector( 'option[value="' + savedModel + '"]' ) ) {
+		if (
+			savedModel &&
+			modelSelect.querySelector( 'option[value="' + savedModel + '"]' )
+		) {
 			modelSelect.value = savedModel;
 		}
 	}
@@ -161,7 +181,8 @@ import './main.css';
 			const name = p.name || p.id || '';
 			const type = p.type || '';
 			lines.push(
-				'Provider: ' + ( name && type ? name + ' · ' + type : name || p.id || '' )
+				'Provider: ' +
+					( name && type ? name + ' · ' + type : name || p.id || '' )
 			);
 		}
 
@@ -179,10 +200,14 @@ import './main.css';
 		if ( meta.token_usage ) {
 			const t = meta.token_usage,
 				parts = [];
-			if ( t.promptTokens != null ) parts.push( 'Prompt: ' + t.promptTokens );
-			if ( t.completionTokens != null ) parts.push( 'Completion: ' + t.completionTokens );
-			if ( t.totalTokens != null ) parts.push( 'Total: ' + t.totalTokens );
-			if ( t.thoughtTokens != null ) parts.push( 'Thought: ' + t.thoughtTokens );
+			if ( t.promptTokens != null )
+				parts.push( 'Prompt: ' + t.promptTokens );
+			if ( t.completionTokens != null )
+				parts.push( 'Completion: ' + t.completionTokens );
+			if ( t.totalTokens != null )
+				parts.push( 'Total: ' + t.totalTokens );
+			if ( t.thoughtTokens != null )
+				parts.push( 'Thought: ' + t.thoughtTokens );
 			if ( parts.length ) lines.push( 'Tokens — ' + parts.join( ' · ' ) );
 		}
 
@@ -190,12 +215,20 @@ import './main.css';
 	}
 
 	btn.addEventListener( 'click', function () {
-		const provider = document.getElementById( 'promptbench-provider' ).value;
-		const system = document.getElementById( 'promptbench-system-prompt' ).value.trim();
-		const prompt = document.getElementById( 'promptbench-prompt' ).value.trim();
+		const provider = document.getElementById(
+			'promptbench-provider'
+		).value;
+		const system = document
+			.getElementById( 'promptbench-system-prompt' )
+			.value.trim();
+		const prompt = document
+			.getElementById( 'promptbench-prompt' )
+			.value.trim();
 		const output = document.getElementById( 'promptbench-output' );
 		const metaEl = document.getElementById( 'promptbench-meta' );
-		const promptDebug = document.getElementById( 'promptbench-prompt-debug' );
+		const promptDebug = document.getElementById(
+			'promptbench-prompt-debug'
+		);
 		const spinner = document.getElementById( 'promptbench-spinner' );
 
 		if ( ! prompt ) return;
@@ -212,7 +245,10 @@ import './main.css';
 		body.append( 'model', modelSelect.value );
 		body.append( 'system', system );
 		body.append( 'prompt', prompt );
-		body.append( 'exact_match', currentTestCase && currentTestCase.exact_match ? '1' : '' );
+		body.append(
+			'exact_match',
+			currentTestCase && currentTestCase.exact_match ? '1' : ''
+		);
 
 		fetch( promptbenchData.ajaxUrl, { method: 'POST', body: body } )
 			.then( function ( r ) {
@@ -225,7 +261,10 @@ import './main.css';
 					output.textContent = res.data.output;
 					if ( currentTestCase && currentTestCase.exact_match ) {
 						output.classList.add(
-							valuesMatch( res.data.output, currentTestCase.expected_value )
+							valuesMatch(
+								res.data.output,
+								currentTestCase.expected_value
+							)
 								? 'is-match'
 								: 'is-mismatch'
 						);
@@ -240,19 +279,23 @@ import './main.css';
 						metaEl.className = '';
 					}
 					if ( res.data.debug ) {
-						document.querySelector( '#apd-system .apd-value' ).textContent =
-							res.data.debug.system || '(none)';
-						document.querySelector( '#apd-user .apd-value' ).textContent =
-							res.data.debug.prompt || '';
-						document.querySelector( '#apd-raw .apd-value' ).textContent = res.data.debug
-							.raw
+						document.querySelector(
+							'#apd-system .apd-value'
+						).textContent = res.data.debug.system || '(none)';
+						document.querySelector(
+							'#apd-user .apd-value'
+						).textContent = res.data.debug.prompt || '';
+						document.querySelector(
+							'#apd-raw .apd-value'
+						).textContent = res.data.debug.raw
 							? JSON.stringify( res.data.debug.raw, null, 2 )
 							: '(empty)';
 						promptDebug.style.display = 'block';
 					}
 				} else {
 					output.className = 'is-error';
-					output.textContent = res.data || promptbenchData.errorGeneric;
+					output.textContent =
+						res.data || promptbenchData.errorGeneric;
 				}
 			} )
 			.catch( function () {
@@ -268,7 +311,9 @@ import './main.css';
 	} );
 
 	function runSingleTest( id, testCase, provider, model ) {
-		const expected = testCase.exact_match ? testCase.expected_value : testCase.expected;
+		const expected = testCase.exact_match
+			? testCase.expected_value
+			: testCase.expected;
 		const body = new FormData();
 		body.append( 'action', 'promptbench_prompt' );
 		body.append( 'nonce', promptbenchData.nonce );
@@ -296,7 +341,10 @@ import './main.css';
 					return {
 						id: id,
 						label: testCase.label,
-						status: valuesMatch( res.data.output, testCase.expected_value )
+						status: valuesMatch(
+							res.data.output,
+							testCase.expected_value
+						)
 							? 'pass'
 							: 'fail',
 						output: res.data.output,
@@ -353,7 +401,12 @@ import './main.css';
 			return r.status === 'error';
 		} ).length;
 
-		const badgeLabels = { pass: 'Pass', fail: 'Fail', error: 'Error', done: 'Done' };
+		const badgeLabels = {
+			pass: 'Pass',
+			fail: 'Fail',
+			error: 'Error',
+			done: 'Done',
+		};
 
 		const summary = document.createElement( 'div' );
 		summary.className = 'promptbench-runall-summary';
@@ -387,7 +440,9 @@ import './main.css';
 			const columns = document.createElement( 'div' );
 			columns.className = 'promptbench-runall-columns';
 			columns.appendChild( buildRunAllColumn( 'Output', r.output ) );
-			columns.appendChild( buildRunAllColumn( 'Expected', r.expected || '—' ) );
+			columns.appendChild(
+				buildRunAllColumn( 'Expected', r.expected || '—' )
+			);
 
 			row.appendChild( label );
 			row.appendChild( columns );
@@ -410,9 +465,11 @@ import './main.css';
 			spinner.style.display = 'inline-block';
 			spinner.classList.add( 'is-active' );
 
-			const entries = Object.entries( testCases ).filter( function ( entry ) {
-				return entry[ 1 ].user && entry[ 1 ].user.trim() !== '';
-			} );
+			const entries = Object.entries( testCases ).filter(
+				function ( entry ) {
+					return entry[ 1 ].user && entry[ 1 ].user.trim() !== '';
+				}
+			);
 
 			const results = [];
 
@@ -428,7 +485,9 @@ import './main.css';
 							' — ' +
 							testCase.label;
 					}
-					results.push( await runSingleTest( id, testCase, provider, model ) );
+					results.push(
+						await runSingleTest( id, testCase, provider, model )
+					);
 				}
 				renderRunAllResults( results );
 			} finally {
