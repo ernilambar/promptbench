@@ -54,4 +54,4 @@ Pushing the tag triggers `.github/workflows/release.yml`, which builds the plugi
 
 ## License
 
-[GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+[GPLv2 or later](LICENSE) © [Nilambar Sharma](https://www.nilambar.net)
