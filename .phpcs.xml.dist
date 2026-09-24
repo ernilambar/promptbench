@@ -85,11 +85,7 @@
 	</rule>
 
 	<!-- Loads the PHP Compatibility ruleset. -->
-	<rule ref="PHPCompatibility">
-		<exclude name="PHPCompatibility.FunctionUse.NewFunctions.str_containsFound"/>
-		<exclude name="PHPCompatibility.FunctionUse.NewFunctions.str_starts_withFound"/>
-		<exclude name="PHPCompatibility.FunctionUse.NewFunctions.str_ends_withFound"/>
-	</rule>
+	<rule ref="PHPCompatibilityWP" />
 
 	<!-- Disallows grouped use declarations. -->
 	<rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse" />
